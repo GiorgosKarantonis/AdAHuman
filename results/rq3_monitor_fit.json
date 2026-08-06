@@ -1,0 +1,22 @@
+{
+  "fpr_on_calibration_split": 0.05333333333333334,
+  "fpr_on_fit_split": 0.02857142857142857,
+  "monitor": {
+    "explained_variance_ratio": 0.9695327579589665,
+    "feature_dim": 480,
+    "n_components": 64,
+    "n_fit": 350,
+    "shrinkage": 0.0637177312551352,
+    "threshold": 103.65195055830534
+  },
+  "n_calibration_split": 150,
+  "n_fit_split": 350,
+  "reference_score_quantiles": {
+    "0.5": 51.426497243096605,
+    "0.9": 87.89335015886425,
+    "0.95": 92.30488999362794,
+    "0.99": 115.59699154257191,
+    "1.0": 131.07177307368792
+  },
+  "target_fpr": 0.05
+}

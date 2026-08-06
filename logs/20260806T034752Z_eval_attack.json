@@ -1,0 +1,44 @@
+{
+  "duration_seconds": 40.717,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T03:48:32.947672+00:00",
+  "freeze_check_bypassed": true,
+  "git_commit": null,
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [
+    "SMOKE TEST: untrained random patch; NOT an attack result",
+    "SMOKE TEST: limited to 24 images per pool; not a result"
+  ],
+  "outputs": {
+    "features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_eval_smoke.npz",
+      "sha256": "75d8065c7712f20fb156d018b447dd4eca8ee3238c815a04868e44aacd088fcd"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq1_attack_smoke.json",
+      "sha256": "6eb3657a6f4b7b99516b1eea98a25b7274f2ec370c4dfae4284b708cbeedb0b4"
+    }
+  },
+  "pools_read": [
+    "eval_untouched",
+    "negative"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "967b300d4e75226165d7da25df984d9abb397117a9d9454ffa2718941423c8d6"
+  },
+  "stage": "eval_attack",
+  "started_at_utc": "2026-08-06T03:47:52.230418+00:00"
+}

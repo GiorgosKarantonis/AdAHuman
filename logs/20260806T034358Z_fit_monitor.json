@@ -1,0 +1,60 @@
+{
+  "duration_seconds": 75.071,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T03:45:13.335985+00:00",
+  "git_commit": null,
+  "git_dirty": true,
+  "inputs": {},
+  "monitor": {
+    "in_sample_fpr": 0.05,
+    "monitor": {
+      "feature_dim": 480,
+      "n_fit": 500,
+      "shrinkage": 0.03770076674257401,
+      "threshold": 274.52469655558906
+    },
+    "reference_score_quantiles": {
+      "0.5": 168.2671352566932,
+      "0.9": 255.62277500739103,
+      "0.95": 274.52469655558906,
+      "0.99": 305.5095783485845,
+      "1.0": 407.9770051929187
+    },
+    "target_fpr": 0.05
+  },
+  "notes": [],
+  "outputs": {
+    "monitor": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/monitor_v1.npz",
+      "sha256": "af5eb715fd1b0720a14612d675b6ef69360671ee2fcdad3beda89cf188cd7c46"
+    },
+    "reference_features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_reference_clean.npz",
+      "sha256": "f46d71ac28c6b61b03ae86e34a80c4d7c6aa5a6a83d88851d0ab9afcb6c017c8"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq3_monitor_fit.json",
+      "sha256": "9e6e39049bbcaf21da5df29d75b0483f8a853b9cae2101b36b1c15ab8bf40949"
+    }
+  },
+  "pools_read": [
+    "reference"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "a69d3a92ad31df6163dc49539944c10f5da2c0a5776aa90da21920406e665d0e"
+  },
+  "stage": "fit_monitor",
+  "started_at_utc": "2026-08-06T03:43:58.265459+00:00"
+}

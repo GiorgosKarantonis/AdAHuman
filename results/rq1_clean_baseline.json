@@ -1,0 +1,129 @@
+{
+  "attack_dev": {
+    "coco_map": {
+      "AP@.50": 0.6379735242680671,
+      "AP@.75": 0.3637306947062098,
+      "AP@[.50:.95]": 0.36661452355843316,
+      "AP_large": 0.6303838731608495,
+      "AP_medium": 0.34370979797154605,
+      "AP_small": 0.021532188196181197,
+      "AR@1": 0.17572734829592684,
+      "AR@10": 0.40290939318370744,
+      "AR@100": 0.4679966749792187,
+      "AR_large": 0.7311750599520384,
+      "AR_medium": 0.45384615384615384,
+      "AR_small": 0.10035842293906809
+    },
+    "iou_threshold": 0.5,
+    "n_images": 300,
+    "operating_point": {
+      "false_negatives": 663,
+      "false_positives": 39,
+      "false_positives_per_image": 0.13,
+      "missed_detection_rate": 0.5511221945137157,
+      "n_detections": 579,
+      "n_ground_truth": 1203,
+      "n_images": 300,
+      "precision": 0.9326424870466321,
+      "recall": 0.4488778054862843,
+      "recall_ci95": [
+        0.4209785516768675,
+        0.4771025101718085
+      ],
+      "true_positives": 540
+    },
+    "pool": "attack_dev",
+    "score_threshold": 0.5
+  },
+  "eval_untouched": {
+    "coco_map": {
+      "AP@.50": 0.6479816051443993,
+      "AP@.75": 0.4003837664955417,
+      "AP@[.50:.95]": 0.3857151414784865,
+      "AP_large": 0.6381958841260919,
+      "AP_medium": 0.33875519239301327,
+      "AP_small": 0.02095573695909741,
+      "AR@1": 0.21219512195121953,
+      "AR@10": 0.42543554006968637,
+      "AR@100": 0.47973286875725896,
+      "AR_large": 0.7354046242774566,
+      "AR_medium": 0.442515923566879,
+      "AR_small": 0.0990049751243781
+    },
+    "iou_threshold": 0.5,
+    "n_images": 500,
+    "operating_point": {
+      "false_negatives": 909,
+      "false_positives": 59,
+      "false_positives_per_image": 0.118,
+      "missed_detection_rate": 0.5278745644599303,
+      "n_detections": 872,
+      "n_ground_truth": 1722,
+      "n_images": 500,
+      "precision": 0.9323394495412844,
+      "recall": 0.4721254355400697,
+      "recall_ci95": [
+        0.44863464360049476,
+        0.4957403165041264
+      ],
+      "true_positives": 813
+    },
+    "pool": "eval_untouched",
+    "score_threshold": 0.5
+  },
+  "negative": {
+    "coco_map": null,
+    "iou_threshold": 0.5,
+    "n_images": 250,
+    "operating_point": {
+      "false_negatives": 0,
+      "false_positives": 1,
+      "false_positives_per_image": 0.004,
+      "missed_detection_rate": NaN,
+      "n_detections": 1,
+      "n_ground_truth": 0,
+      "n_images": 250,
+      "precision": 0.0,
+      "recall": NaN,
+      "true_positives": 0
+    },
+    "pool": "negative",
+    "score_threshold": 0.5
+  },
+  "reference": {
+    "coco_map": {
+      "AP@.50": 0.6300722882364356,
+      "AP@.75": 0.3692188439518116,
+      "AP@[.50:.95]": 0.3700556182996909,
+      "AP_large": 0.6376210131593388,
+      "AP_medium": 0.32710022308629916,
+      "AP_small": 0.020948327028059904,
+      "AR@1": 0.1933368869936034,
+      "AR@10": 0.4107675906183369,
+      "AR@100": 0.46780383795309166,
+      "AR_large": 0.7327116212338594,
+      "AR_medium": 0.4363013698630137,
+      "AR_small": 0.1084632516703786
+    },
+    "iou_threshold": 0.5,
+    "n_images": 500,
+    "operating_point": {
+      "false_negatives": 1022,
+      "false_positives": 65,
+      "false_positives_per_image": 0.13,
+      "missed_detection_rate": 0.5447761194029851,
+      "n_detections": 919,
+      "n_ground_truth": 1876,
+      "n_images": 500,
+      "precision": 0.9292709466811752,
+      "recall": 0.4552238805970149,
+      "recall_ci95": [
+        0.4328034565640393,
+        0.4778273047633581
+      ],
+      "true_positives": 854
+    },
+    "pool": "reference",
+    "score_threshold": 0.5
+  }
+}

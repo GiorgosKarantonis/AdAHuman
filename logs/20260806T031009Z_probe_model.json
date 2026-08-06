@@ -1,0 +1,44 @@
+{
+  "duration_seconds": 1.311,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T03:10:10.800339+00:00",
+  "git_commit": null,
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [
+    "wrote probed values into the protocol"
+  ],
+  "outputs": {},
+  "pools_read": [],
+  "probe": {
+    "checkpoint_file": "ssdlite320_mobilenet_v3_large_coco-a79551df.pth",
+    "feature_dim": 480,
+    "feature_hook": "backbone.features.1",
+    "feature_module_type": "Sequential",
+    "feature_unpooled_shape": [
+      480,
+      10,
+      10
+    ],
+    "model_parameters": 3440060,
+    "output_stride": 32.0,
+    "weights_sha256": "a79551df90c79834bcd3bb3845ef9d966b5449a3a9b2833ae8404778ca5d65d2"
+  },
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "a2f94941338514cfca9c745da16fd31e081d32fa2aa374652a990ea1d81bd0e6"
+  },
+  "stage": "probe_model",
+  "started_at_utc": "2026-08-06T03:10:09.488941+00:00"
+}

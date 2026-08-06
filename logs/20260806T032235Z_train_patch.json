@@ -1,0 +1,38 @@
+{
+  "duration_seconds": 23.695,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T03:22:59.517731+00:00",
+  "git_commit": null,
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [
+    "trained on CPU; expect substantially fewer steps than on GPU",
+    "timing probe only; no patch written"
+  ],
+  "outputs": {},
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "a69d3a92ad31df6163dc49539944c10f5da2c0a5776aa90da21920406e665d0e"
+  },
+  "stage": "train_patch",
+  "started_at_utc": "2026-08-06T03:22:35.822232+00:00",
+  "timing_probe": {
+    "seconds": 21.79199981689453,
+    "steps": 5,
+    "steps_per_sec": 0.22944199899100975
+  }
+}

@@ -1,0 +1,21 @@
+# Direct dependencies. Exact resolved versions, including transitive ones, are
+# pinned in requirements.lock and recorded in every run log.
+#
+# torch is capped at 2.2.x because that is the last release with macOS x86_64
+# wheels, and RQ4 timings are measured on an Intel laptop CPU. Patch
+# optimization runs on Colab, whose torch version is recorded separately in the
+# training run log; the patch crosses that boundary as a plain tensor, so the
+# version difference does not affect any locally measured result.
+torch==2.2.2
+torchvision==0.17.2
+
+numpy<2                  # torch 2.2.x is built against the NumPy 1.x ABI
+pycocotools>=2.0.7       # COCO annotation parsing and mAP evaluation
+scikit-learn>=1.3        # Ledoit-Wolf covariance for the RQ3 monitor
+scipy>=1.11
+Pillow>=10.0
+PyYAML>=6.0
+onnx>=1.15
+onnxruntime>=1.17        # CPU execution provider for the RQ4 comparison
+psutil>=5.9              # resident memory sampling during benchmarks
+tqdm>=4.66

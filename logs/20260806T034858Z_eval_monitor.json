@@ -1,0 +1,53 @@
+{
+  "duration_seconds": 19.94,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T03:49:18.236285+00:00",
+  "freeze_check_bypassed": true,
+  "git_commit": null,
+  "git_dirty": true,
+  "inputs": {
+    "eval_features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_eval_smoke.npz",
+      "sha256": "75d8065c7712f20fb156d018b447dd4eca8ee3238c815a04868e44aacd088fcd"
+    },
+    "monitor": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/monitor_v1.npz",
+      "sha256": "af5eb715fd1b0720a14612d675b6ef69360671ee2fcdad3beda89cf188cd7c46"
+    }
+  },
+  "notes": [
+    "SMOKE TEST: 24 images, smoke features; not a result",
+    "NEGATIVE: no useful separation in either framing (clean 0.538, shift 0.542)."
+  ],
+  "outputs": {
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq3_monitor_eval_smoke.json",
+      "sha256": "2f9c3dc5178cf2fbaf6df44c82218f531febaa825ead4a40402a538f57d9ffcc"
+    },
+    "scores": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/monitor_scores_eval_smoke.npz",
+      "sha256": "8f410f3eff0427e49e49a9eccba0f6565727b430334d9ca2e68215bd50148399"
+    }
+  },
+  "pools_read": [
+    "eval_untouched",
+    "negative"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "967b300d4e75226165d7da25df984d9abb397117a9d9454ffa2718941423c8d6"
+  },
+  "stage": "eval_monitor",
+  "started_at_utc": "2026-08-06T03:48:58.295976+00:00"
+}

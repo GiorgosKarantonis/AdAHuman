@@ -1,0 +1,162 @@
+# AdAHuman frozen evaluation protocol, version 1.
+#
+# FREEZE SEMANTICS
+# ----------------
+# Fields marked `PENDING` are not yet frozen. adahuman.config.load_protocol()
+# refuses to return a protocol containing PENDING values to any script that
+# touches the untouched evaluation pool. This enforces, in code, the rule stated
+# in PROTOCOL.md: no evaluation-pool measurement may be produced before the
+# parameters that determine it are fixed.
+#
+# Once a field is frozen it is changed only by publishing a new protocol version
+# (protocol_v2.yaml). Frozen fields are never edited in place.
+
+protocol_version: 1
+frozen_on: 2026-08-05       # ISO date; set by scripts/02_freeze_pools.py
+seed: 20260805
+
+model:
+  # torchvision detection model, downloaded at run time (not redistributed).
+  name: ssdlite320_mobilenet_v3_large
+  weights_enum: SSDLite320_MobileNet_V3_Large_Weights.COCO_V1
+  weights_sha256: a79551df90c79834bcd3bb3845ef9d966b5449a3a9b2833ae8404778ca5d65d2   # of the resolved torchvision checkpoint file
+  input_size: [320, 320]
+  torch_version: 2.2.2
+  torchvision_version: 0.17.2
+
+task:
+  # COCO category 1 == "person". The artifact evaluates person detection only.
+  category_id: 1
+  category_name: person
+  # Operating point used for recall / missed-detection / attack-success metrics.
+  # mAP is reported separately over the standard COCO IoU sweep.
+  score_threshold: 0.5
+  iou_threshold: 0.5
+
+data:
+  source: coco_val2017
+  images_dir: data/coco/val2017
+  annotations: data/coco/annotations/instances_val2017.json
+  # Eligibility for the person-bearing pools. A patch scaled to a fraction of a
+  # tiny bounding box degenerates to a few pixels and tests nothing, so images
+  # must contain at least one non-crowd person above this bbox area (px^2 in
+  # original image coordinates). Fixed here so eligibility is not a tuning knob.
+  person_min_bbox_area: 10000
+  # Pools are disjoint. Membership is fixed by sorted image_id under `seed` and
+  # recorded as an explicit manifest + sha256 in configs/manifests/.
+  pools:
+    reference:
+      size: 500
+      purpose: >-
+        Estimate clean in-distribution feature statistics (mu, Sigma) for the
+        RQ3 monitor. Never used for attack optimization or final reporting.
+      requires_person: true
+    attack_dev:
+      size: 300
+      purpose: >-
+        Optimize the adversarial patch and tune any attack or threshold
+        hyperparameters. All exploratory work happens here.
+      requires_person: true
+    eval_untouched:
+      size: 500
+      purpose: >-
+        Final attack, robustness, and monitoring results. Touched exactly once,
+        after freeze. Never used for any tuning decision.
+      requires_person: true
+    negative:
+      size: 250
+      purpose: >-
+        Images with no annotated person. Measures false person detections and
+        monitor false-positive behavior.
+      requires_person: false
+  manifest_dir: configs/manifests
+
+ordinary_shift:
+  # Non-malicious corruptions applied ONLY to eval_untouched images, to test
+  # whether the RQ3 monitor separates adversarial inputs from benign shift.
+  # Severity fixed; no per-corruption tuning against final results.
+  severity: 3
+  corruptions:
+    - gaussian_noise
+    - motion_blur
+    - brightness
+    - fog
+    - jpeg_compression
+
+attack:
+  # Primary attack: person-suppression patch, after Thys et al. 2019 (ref [13]),
+  # reimplemented against SSDLite person-class scores. Independently written;
+  # no employer or client code, thresholds, or learned parameters are used.
+  method: person_suppression_patch
+  reference: "Thys, Van Ranst, Goedeme (CVPRW 2019)"
+  patch_size_px: 300           # patch canvas, resized per-instance under EOT
+  patch_scale_of_bbox: 0.25    # patch area as fraction of target person bbox
+  init: random_uniform
+  optimizer: adam
+  learning_rate: 0.03
+  steps: PENDING               # set after a timing probe on Colab
+  batch_size: 8
+  # Total-variation weight. Penalizes high-frequency noise in the patch, after
+  # Thys et al.; a patch of pure per-pixel noise is not physically realizable
+  # and would overstate what a printable attack achieves.
+  tv_weight: 0.005
+  # Only person boxes at least this large receive a patch. Matches the pool
+  # eligibility threshold so the attack is evaluated on targets it can
+  # meaningfully cover.
+  min_target_bbox_area: 10000
+  # Expectation-over-transformation ranges. Applied at every optimization step
+  # and at evaluation, so the reported result is not a single-pose artifact.
+  eot:
+    scale_range: [0.8, 1.2]
+    rotation_deg_range: [-20, 20]
+    brightness_range: [0.8, 1.2]
+    contrast_range: [0.8, 1.2]
+    perspective_distortion: 0.15
+    noise_std: 0.02
+  # Secondary digital evasion (PGD-style) is DEFERRED for the initial artifact,
+  # as permitted by concept paper sections 6.2 and 7.2. It is not implemented,
+  # not run, and not reported.
+  secondary_digital_evasion: deferred
+
+monitor:
+  # RQ3 feasibility study: image-level Mahalanobis-style feature distance.
+  # Clean-room implementation from public literature (ref [15]).
+  feature_hook: backbone.features.1        # exact torchvision module path, set by probe
+  feature_unpooled_shape: [480, 10, 10]
+  feature_dim: 480         # pooled dimension
+  pooling: global_average
+  # CORRECTION 2026-08-05, before any held-out measurement: the first version
+  # of this section estimated a full 480-dimensional covariance and selected
+  # the threshold in-sample. That reported its target 5% FPR by construction
+  # while producing 60% FPR on held-out clean reference images. Both the
+  # estimator and the threshold rule below are the corrected versions. The
+  # superseded fit and its run log remain in logs/ as part of the record.
+  covariance_estimator: pca_then_ledoit_wolf
+  pca_components: 64
+  # Fixed a priori: smallest power of two retaining >=95% of variance.
+  # 64 retains ~97%; 32 retains ~89%. Not searched against any result.
+  pca_selection_rule: smallest_pow2_retaining_95pct_variance
+  fit_pool: reference          # mu/Sigma fit on the reference pool ONLY
+  # The reference pool is split: the covariance is estimated on one part and
+  # the threshold calibrated on the other. Neither part is ever the held-out
+  # evaluation pool.
+  calibration_fraction: 0.3
+  threshold_rule: fpr_at_5pct_on_held_out_reference_split
+  threshold_value: 103.651951
+
+deploy:
+  # RQ4: deployment-format and CPU-runtime comparison. Explicitly NOT a claim
+  # about production edge-accelerator performance.
+  export_format: onnx
+  onnx_opset: 17
+  runtime: onnxruntime
+  runtime_version: PENDING
+  hardware: PENDING            # CPU model / OS, recorded at benchmark time
+  intra_op_threads: 4
+  warmup_iters: 20
+  measured_iters: 200
+  # Conversion fidelity: max abs deviation between torch and ORT outputs on a
+  # fixed probe batch drawn from the reference pool.
+  fidelity_probe_size: 50
+
+scope_freeze_date: 2026-08-11
