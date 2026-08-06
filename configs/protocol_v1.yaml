@@ -150,8 +150,8 @@ deploy:
   export_format: onnx
   onnx_opset: 17
   runtime: onnxruntime
-  runtime_version: PENDING
-  hardware: PENDING            # CPU model / OS, recorded at benchmark time
+  runtime_version: 1.23.2
+  hardware: Intel(R) Core(TM) i5-8257U CPU @ 1.40GHz | Darwin 23.6.0 | x86_64            # CPU model / OS, recorded at benchmark time
   intra_op_threads: 4
   warmup_iters: 20
   measured_iters: 200

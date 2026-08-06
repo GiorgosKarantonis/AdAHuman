@@ -22,7 +22,7 @@ when the result is negative.
 | RQ1b patch attack | implemented and dry-run; GPU training pending |
 | RQ3 monitor fit | done — `results/rq3_monitor_fit.json` |
 | RQ3 monitor evaluation | implemented and dry-run; needs the trained patch |
-| RQ4 ONNX export and CPU benchmark | not started |
+| RQ4 ONNX export and CPU benchmark | done — `results/rq4_export.json`, `results/rq4_benchmark.json` |
 | RQ5 reproducibility package | in progress |
 
 Stages 05 and 07 have been exercised end-to-end with an untrained patch on a
@@ -52,6 +52,40 @@ figures are the threshold-independent view.
 
 The three person-bearing pools agree to within their confidence intervals,
 which is the intended check that the random split produced exchangeable pools.
+
+## Deployment comparison (RQ4)
+
+The full detector, including non-maximum suppression, exports to ONNX opset 17
+at 320x320, batch size 1. Conversion fidelity is effectively exact: across 50
+reference images, **zero** disagreements in person-detection count at the 0.5
+operating threshold, maximum box deviation 7.6e-05 px, maximum score deviation
+1.9e-06.
+
+Latency on an Intel i5-8257U at 4 threads, PyTorch and onnxruntime interleaved
+over 200 iterations each:
+
+| | PyTorch | onnxruntime | ratio |
+|---|---|---|---|
+| median | 67.7 ms | 86.3 ms | 0.78x |
+| p95 | 74.7 ms | 107.7 ms | 0.69x |
+| p99 | 77.9 ms | 110.3 ms | 0.71x |
+| min | 56.1 ms | 37.5 ms | 1.50x |
+| throughput | 14.8 fps | 11.6 fps | 0.78x |
+| load memory | 19.3 MiB | 29.2 MiB | |
+| model size | 13.25 MB | 13.46 MB | |
+
+**ONNX Runtime is slower here, not faster** — about 22% at the median, with a
+noticeably wider spread. That runs against the common assumption that exporting
+to ONNX buys throughput. It is reported as measured.
+
+The two paths were timed *interleaved* rather than one after the other. A first
+sequential run gave the same 0.78x median ratio but much dirtier tails
+(PyTorch p99 109 ms versus 78 ms interleaved), because running one path to
+completion before the other confounds the execution path with CPU thermal state
+and background load.
+
+This is a single machine at a single thread count. See
+[`LIMITATIONS.md`](LIMITATIONS.md) — the relative ordering can invert elsewhere.
 
 ## Design
 

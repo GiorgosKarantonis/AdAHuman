@@ -1,0 +1,93 @@
+{
+  "benchmark": {
+    "hardware": "Intel(R) Core(TM) i5-8257U CPU @ 1.40GHz | Darwin 23.6.0 | x86_64",
+    "latency": {
+      "onnxruntime": {
+        "max_ms": 176.36109300019598,
+        "mean_ms": 71.13004234999153,
+        "median_ms": 82.1980025002631,
+        "min_ms": 32.60301899990736,
+        "n_measured": 200,
+        "n_warmup": 20,
+        "p95_ms": 100.30826744946353,
+        "p99_ms": 107.6798741899068,
+        "std_ms": 26.750916883590186,
+        "throughput_fps": 12.165745755157483
+      },
+      "pytorch": {
+        "max_ms": 223.93256499981362,
+        "mean_ms": 66.04152122502455,
+        "median_ms": 64.02547249945201,
+        "min_ms": 53.06455499976437,
+        "n_measured": 200,
+        "n_warmup": 20,
+        "p95_ms": 75.09104934970308,
+        "p99_ms": 108.95190007036929,
+        "std_ms": 13.756646495047345,
+        "throughput_fps": 15.618783602238297
+      }
+    },
+    "load_memory_mb": {
+      "onnxruntime": 30.328125,
+      "pytorch": 19.22265625
+    },
+    "n_timing_images": 8,
+    "runtime": {
+      "onnxruntime": "1.23.2",
+      "torch": "2.2.2"
+    },
+    "sizes": {
+      "onnx": {
+        "bytes": 14117600,
+        "mb": 13.463592529296875,
+        "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx"
+      },
+      "pytorch": {
+        "buffer_bytes": 132336,
+        "n_parameters": 3440060,
+        "parameter_bytes": 13760240,
+        "total_bytes": 13892576,
+        "total_mb": 13.248992919921875
+      }
+    },
+    "threads": 4
+  },
+  "duration_seconds": 33.376,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-06T04:23:42.690470+00:00",
+  "git_commit": "91238146ac5fb52f0c94797ca6ac70b88dd8c5f2",
+  "git_dirty": true,
+  "inputs": {
+    "onnx": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx",
+      "sha256": "0cf0ae4524ab5575214e0ce0c281708de2e98b8e2c0ef8496dd2275c23d679cb"
+    }
+  },
+  "notes": [],
+  "outputs": {
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq4_benchmark.json",
+      "sha256": "368b26335c214d6ac8014fa7cbc0c0d139bcda9e6259b7f7f04a28921457e494"
+    }
+  },
+  "pools_read": [
+    "reference"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "8fc2b5be7c106322775067db18f34be6ac09c46da8892167c1781c41861534b9"
+  },
+  "stage": "benchmark_cpu",
+  "started_at_utc": "2026-08-06T04:23:09.314911+00:00"
+}

@@ -29,6 +29,23 @@ rather than added retroactively.
    laptop CPU. It is not a measurement on a production edge accelerator, NPU, or
    mobile device. No quantization or pruning is performed.
 
+   Specific limits on the RQ4 numbers:
+
+   - **One machine, one thread count.** All timings come from a single Intel
+     i5-8257U at 4 intra-op threads. Relative performance between the two
+     runtimes can invert on different hardware, thread counts, or builds.
+   - **The exported graph is trace-specialized.** Export raised TracerWarnings
+     indicating that Python-level control flow and some tensor values were
+     baked into the graph as constants. The artifact is therefore valid for the
+     traced configuration -- 320x320, batch size 1 -- and should not be assumed
+     correct at other shapes.
+   - **Memory figures are coarse.** Resident-set growth is shared with the rest
+     of the process and the allocator does not promptly return freed pages.
+     These are indicative comparisons, not exact footprints.
+   - **Timing uses eight cycled frames.** Enough to average over per-frame NMS
+     cost, not enough to characterize the full distribution of scene
+     complexity.
+
 6. **Single dataset, single domain.** COCO val2017 is a general-purpose object
    detection dataset. It is not a critical-infrastructure or public-safety
    camera dataset, and results should not be read as characterizing performance

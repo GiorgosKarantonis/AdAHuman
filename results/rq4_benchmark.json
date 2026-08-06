@@ -1,0 +1,53 @@
+{
+  "hardware": "Intel(R) Core(TM) i5-8257U CPU @ 1.40GHz | Darwin 23.6.0 | x86_64",
+  "latency": {
+    "onnxruntime": {
+      "max_ms": 114.05798699979641,
+      "mean_ms": 75.69368871995721,
+      "median_ms": 86.28214650025257,
+      "min_ms": 37.49394700025732,
+      "n_measured": 200,
+      "n_warmup": 20,
+      "p95_ms": 107.67532045024382,
+      "p99_ms": 110.30956883010731,
+      "std_ms": 24.95494143757004,
+      "throughput_fps": 11.589883197876548
+    },
+    "pytorch": {
+      "max_ms": 79.44561000022077,
+      "mean_ms": 68.01920950999829,
+      "median_ms": 67.68148499986637,
+      "min_ms": 56.137620999834326,
+      "n_measured": 200,
+      "n_warmup": 20,
+      "p95_ms": 74.65297785047369,
+      "p99_ms": 77.9248658999495,
+      "std_ms": 5.016755296455232,
+      "throughput_fps": 14.775089524143485
+    }
+  },
+  "load_memory_mb": {
+    "onnxruntime": 29.18359375,
+    "pytorch": 19.30859375
+  },
+  "n_timing_images": 8,
+  "runtime": {
+    "onnxruntime": "1.23.2",
+    "torch": "2.2.2"
+  },
+  "sizes": {
+    "onnx": {
+      "bytes": 14117600,
+      "mb": 13.463592529296875,
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx"
+    },
+    "pytorch": {
+      "buffer_bytes": 132336,
+      "n_parameters": 3440060,
+      "parameter_bytes": 13760240,
+      "total_bytes": 13892576,
+      "total_mb": 13.248992919921875
+    }
+  },
+  "threads": 4
+}

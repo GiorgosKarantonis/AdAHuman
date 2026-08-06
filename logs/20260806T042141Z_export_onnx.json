@@ -1,0 +1,57 @@
+{
+  "duration_seconds": 23.94,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-14.8.7-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "export_warnings": [
+    "TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!",
+    "TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).",
+    "TracerWarning: Using len to get tensor shape might cause the trace to be incorrect. Recommended usage would be tensor.shape[0]. Passing a tensor of different shape might lead to errors or silently give incorrect results.",
+    "TracerWarning: torch.as_tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.",
+    "TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.",
+    "UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor)."
+  ],
+  "fidelity": {
+    "max_abs_box_deviation": 7.62939453125e-05,
+    "max_abs_score_deviation": 1.9073486328125e-06,
+    "mean_abs_box_deviation": 3.662109375e-05,
+    "mean_abs_score_deviation": 6.377696990966796e-07,
+    "n_count_mismatches": 0,
+    "n_images": 10,
+    "n_label_mismatches": 0,
+    "score_threshold": 0.5
+  },
+  "finished_at_utc": "2026-08-06T04:22:05.020668+00:00",
+  "git_commit": "91238146ac5fb52f0c94797ca6ac70b88dd8c5f2",
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [],
+  "outputs": {
+    "onnx": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx",
+      "sha256": "0cf0ae4524ab5575214e0ce0c281708de2e98b8e2c0ef8496dd2275c23d679cb"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq4_export.json",
+      "sha256": "cfc1cf091a164144003659fac7c77170bc019877b28c042fb1b9dba992af8f83"
+    }
+  },
+  "pools_read": [
+    "reference"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "8fc2b5be7c106322775067db18f34be6ac09c46da8892167c1781c41861534b9"
+  },
+  "stage": "export_onnx",
+  "started_at_utc": "2026-08-06T04:21:41.080351+00:00"
+}

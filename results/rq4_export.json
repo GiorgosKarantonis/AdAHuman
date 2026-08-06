@@ -1,0 +1,45 @@
+{
+  "export_warnings": [
+    "TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!",
+    "TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).",
+    "TracerWarning: Using len to get tensor shape might cause the trace to be incorrect. Recommended usage would be tensor.shape[0]. Passing a tensor of different shape might lead to errors or silently give incorrect results.",
+    "TracerWarning: torch.as_tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.",
+    "TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.",
+    "UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor)."
+  ],
+  "fidelity": {
+    "max_abs_box_deviation": 7.62939453125e-05,
+    "max_abs_score_deviation": 1.9073486328125e-06,
+    "mean_abs_box_deviation": 3.662109375e-05,
+    "mean_abs_score_deviation": 6.377696990966796e-07,
+    "n_count_mismatches": 0,
+    "n_images": 10,
+    "n_label_mismatches": 0,
+    "score_threshold": 0.5
+  },
+  "onnx": {
+    "batch_size": 1,
+    "includes_nms": true,
+    "input_size": [
+      320,
+      320
+    ],
+    "opset": 17,
+    "path": "artifacts/detector_v1.onnx",
+    "sha256": "0cf0ae4524ab5575214e0ce0c281708de2e98b8e2c0ef8496dd2275c23d679cb"
+  },
+  "sizes": {
+    "onnx": {
+      "bytes": 14117600,
+      "mb": 13.463592529296875,
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx"
+    },
+    "pytorch": {
+      "buffer_bytes": 132336,
+      "n_parameters": 3440060,
+      "parameter_bytes": 13760240,
+      "total_bytes": 13892576,
+      "total_mb": 13.248992919921875
+    }
+  }
+}
