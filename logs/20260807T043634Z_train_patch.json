@@ -1,0 +1,38 @@
+{
+  "duration_seconds": 5.987,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "2.0.2",
+    "onnxruntime": null,
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.12.13",
+    "scikit_learn": "1.6.1",
+    "torch": "2.11.0+cu128",
+    "torch_cuda_available": true,
+    "torch_cuda_device": "Tesla T4",
+    "torchvision": "0.26.0+cu128"
+  },
+  "finished_at_utc": "2026-08-07T04:36:40.233351+00:00",
+  "git_commit": "df5e5e3e7705c900002d5a75621a6a15e230b16b",
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [
+    "timing probe only; no patch written"
+  ],
+  "outputs": {},
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/content/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "819e97bf961e90da78b6efba523bf8b594136915eaa308b3a867051ea3314c12"
+  },
+  "stage": "train_patch",
+  "started_at_utc": "2026-08-07T04:36:34.245912+00:00",
+  "timing_probe": {
+    "seconds": 2.6580910682678223,
+    "steps": 5,
+    "steps_per_sec": 1.8810491708466224
+  }
+}

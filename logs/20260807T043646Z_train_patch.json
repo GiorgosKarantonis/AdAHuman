@@ -1,0 +1,60 @@
+{
+  "duration_seconds": 640.287,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "2.0.2",
+    "onnxruntime": null,
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.12.13",
+    "scikit_learn": "1.6.1",
+    "torch": "2.11.0+cu128",
+    "torch_cuda_available": true,
+    "torch_cuda_device": "Tesla T4",
+    "torchvision": "0.26.0+cu128"
+  },
+  "finished_at_utc": "2026-08-07T04:47:26.902595+00:00",
+  "git_commit": "df5e5e3e7705c900002d5a75621a6a15e230b16b",
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [],
+  "outputs": {
+    "history": {
+      "path": "/content/AdAHuman/artifacts/patch_v1_training.json",
+      "sha256": "1df1e71b08ecd2898dbdfa38945908edd255645a9717182fe67ee3032d73b61e"
+    },
+    "patch": {
+      "path": "/content/AdAHuman/artifacts/patch_v1.pt",
+      "sha256": "6fad168ad8ef191e5d5c09b7e96407bb229591e07727ffc43656511c2f673040"
+    },
+    "preview": {
+      "path": "/content/AdAHuman/artifacts/patch_v1.png",
+      "sha256": "6b6fe5fc3f82ebba382b388767d65e42e5153d3406fed996c1407da6f5360dad"
+    }
+  },
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/content/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "819e97bf961e90da78b6efba523bf8b594136915eaa308b3a867051ea3314c12"
+  },
+  "stage": "train_patch",
+  "started_at_utc": "2026-08-07T04:36:46.615552+00:00",
+  "training": {
+    "early_stopping": {
+      "best_epoch": 103,
+      "best_smoothed": 0.6819964328327695,
+      "epochs_run": 109,
+      "epochs_without_improvement": 30,
+      "min_delta": 0.003,
+      "patience": 30,
+      "stopped_early": true,
+      "window": 5
+    },
+    "epoch_cap": 300,
+    "steps_per_sec": 6.3241674227719775,
+    "steps_run": 4033,
+    "steps_to_best": 3848
+  }
+}

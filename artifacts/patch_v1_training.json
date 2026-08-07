@@ -2,185 +2,889 @@
   "history": [
     {
       "epoch": 0,
-      "loss": 0.8094229182681522,
-      "mean_max_person_score": 0.8090243838928841,
-      "patches_applied": 565
+      "loss": 0.8094368496456662,
+      "mean_max_person_score": 0.809038109070546,
+      "smoothed": 0.809038109070546,
+      "patches_applied": 565,
+      "is_best": true
     },
     {
       "epoch": 1,
-      "loss": 0.815894370143478,
-      "mean_max_person_score": 0.815360244866964,
-      "patches_applied": 568
+      "loss": 0.815152910915581,
+      "mean_max_person_score": 0.8146168186857894,
+      "smoothed": 0.8118274638781677,
+      "patches_applied": 568,
+      "is_best": false
     },
     {
       "epoch": 2,
-      "loss": 0.7949107724267084,
-      "mean_max_person_score": 0.7942899932732453,
-      "patches_applied": 565
+      "loss": 0.7952591809066566,
+      "mean_max_person_score": 0.7946377799317643,
+      "smoothed": 0.8060975692293666,
+      "patches_applied": 565,
+      "is_best": true
     },
     {
       "epoch": 3,
-      "loss": 0.8012962099668142,
-      "mean_max_person_score": 0.8006018625723349,
-      "patches_applied": 563
+      "loss": 0.8004200700167063,
+      "mean_max_person_score": 0.7997268615542231,
+      "smoothed": 0.8045048923105806,
+      "patches_applied": 563,
+      "is_best": true
     },
     {
       "epoch": 4,
-      "loss": 0.7897960495304417,
-      "mean_max_person_score": 0.7890467820940791,
-      "patches_applied": 567
+      "loss": 0.7788655790122779,
+      "mean_max_person_score": 0.7781078058320123,
+      "smoothed": 0.7992254750148671,
+      "patches_applied": 567,
+      "is_best": true
     },
     {
       "epoch": 5,
-      "loss": 0.7758088289080439,
-      "mean_max_person_score": 0.7750045318861265,
-      "patches_applied": 568
+      "loss": 0.7817084032136041,
+      "mean_max_person_score": 0.7808885445465913,
+      "smoothed": 0.7935955621100761,
+      "patches_applied": 568,
+      "is_best": true
     },
     {
       "epoch": 6,
-      "loss": 0.7924607573328791,
-      "mean_max_person_score": 0.791612315822292,
-      "patches_applied": 564
+      "loss": 0.7880167284527341,
+      "mean_max_person_score": 0.7871479166520609,
+      "smoothed": 0.7881017817033305,
+      "patches_applied": 564,
+      "is_best": true
     },
     {
       "epoch": 7,
-      "loss": 0.7874604399139816,
-      "mean_max_person_score": 0.7865667455905193,
-      "patches_applied": 559
+      "loss": 0.7845025851919845,
+      "mean_max_person_score": 0.7835905423035493,
+      "smoothed": 0.7858923341776874,
+      "patches_applied": 559,
+      "is_best": true
     },
     {
       "epoch": 8,
-      "loss": 0.7793838848938813,
-      "mean_max_person_score": 0.7784520371540172,
-      "patches_applied": 565
+      "loss": 0.7784923766110394,
+      "mean_max_person_score": 0.777541109033533,
+      "smoothed": 0.7814551836735493,
+      "patches_applied": 565,
+      "is_best": true
     },
     {
       "epoch": 9,
-      "loss": 0.7773179975715844,
-      "mean_max_person_score": 0.7763501888996845,
-      "patches_applied": 563
+      "loss": 0.7833008588971319,
+      "mean_max_person_score": 0.7823139751279676,
+      "smoothed": 0.7822964175327404,
+      "patches_applied": 563,
+      "is_best": false
     },
     {
       "epoch": 10,
-      "loss": 0.7581091249311293,
-      "mean_max_person_score": 0.75710704519942,
-      "patches_applied": 566
+      "loss": 0.7608940826879965,
+      "mean_max_person_score": 0.7598757518304361,
+      "smoothed": 0.7780938589895093,
+      "patches_applied": 566,
+      "is_best": true
     },
     {
       "epoch": 11,
-      "loss": 0.758661869409922,
-      "mean_max_person_score": 0.7576306462287903,
-      "patches_applied": 566
+      "loss": 0.7636572847495208,
+      "mean_max_person_score": 0.7626106449075647,
+      "smoothed": 0.7731864046406102,
+      "patches_applied": 566,
+      "is_best": true
     },
     {
       "epoch": 12,
-      "loss": 0.7690728435645232,
-      "mean_max_person_score": 0.7680114394909626,
-      "patches_applied": 563
+      "loss": 0.7780612336622702,
+      "mean_max_person_score": 0.7769859578158405,
+      "smoothed": 0.7718654877430684,
+      "patches_applied": 563,
+      "is_best": true
     },
     {
       "epoch": 13,
-      "loss": 0.7600418232582711,
-      "mean_max_person_score": 0.7589536744195062,
-      "patches_applied": 564
+      "loss": 0.7611593451048877,
+      "mean_max_person_score": 0.7600585335009807,
+      "smoothed": 0.7683689726365579,
+      "patches_applied": 564,
+      "is_best": true
     },
     {
       "epoch": 14,
-      "loss": 0.759113614623611,
-      "mean_max_person_score": 0.7580010262695519,
-      "patches_applied": 568
+      "loss": 0.7623865378869547,
+      "mean_max_person_score": 0.7612611570873776,
+      "smoothed": 0.7641584090284399,
+      "patches_applied": 568,
+      "is_best": true
     },
     {
       "epoch": 15,
-      "loss": 0.7504446707867287,
-      "mean_max_person_score": 0.7493095422113264,
-      "patches_applied": 564
+      "loss": 0.749193017547195,
+      "mean_max_person_score": 0.7480454243518211,
+      "smoothed": 0.761792343532717,
+      "patches_applied": 564,
+      "is_best": true
     },
     {
       "epoch": 16,
-      "loss": 0.7311579134013202,
-      "mean_max_person_score": 0.7300021857828707,
-      "patches_applied": 566
+      "loss": 0.7489062306043264,
+      "mean_max_person_score": 0.747735712979291,
+      "smoothed": 0.7588173571470621,
+      "patches_applied": 566,
+      "is_best": true
     },
     {
       "epoch": 17,
-      "loss": 0.7311808193052137,
-      "mean_max_person_score": 0.7300014769708788,
-      "patches_applied": 567
+      "loss": 0.7430708738597663,
+      "mean_max_person_score": 0.7418745240649661,
+      "smoothed": 0.7517950703968873,
+      "patches_applied": 567,
+      "is_best": true
     },
     {
       "epoch": 18,
-      "loss": 0.7515640677632512,
-      "mean_max_person_score": 0.7503624139605342,
-      "patches_applied": 565
+      "loss": 0.7643258942140115,
+      "mean_max_person_score": 0.7631097452060597,
+      "smoothed": 0.7524053127379031,
+      "patches_applied": 565,
+      "is_best": false
     },
     {
       "epoch": 19,
-      "loss": 0.7429825583019772,
-      "mean_max_person_score": 0.7417635031648584,
-      "patches_applied": 567
+      "loss": 0.7580747266073484,
+      "mean_max_person_score": 0.7568428065325763,
+      "smoothed": 0.7515216426269429,
+      "patches_applied": 567,
+      "is_best": true
     },
     {
       "epoch": 20,
-      "loss": 0.7397991596041499,
-      "mean_max_person_score": 0.7385629125543542,
-      "patches_applied": 559
+      "loss": 0.7459542139156444,
+      "mean_max_person_score": 0.7447073411297154,
+      "smoothed": 0.7508540259825217,
+      "patches_applied": 559,
+      "is_best": true
     },
     {
       "epoch": 21,
-      "loss": 0.7343976014369243,
-      "mean_max_person_score": 0.7331473021893888,
-      "patches_applied": 561
+      "loss": 0.7544528471456992,
+      "mean_max_person_score": 0.7531912665109377,
+      "smoothed": 0.7519451366888511,
+      "patches_applied": 561,
+      "is_best": false
     },
     {
       "epoch": 22,
-      "loss": 0.7288020398165729,
-      "mean_max_person_score": 0.7275339695247444,
-      "patches_applied": 565
+      "loss": 0.7366357767904127,
+      "mean_max_person_score": 0.7353578242095741,
+      "smoothed": 0.7506417967177726,
+      "patches_applied": 565,
+      "is_best": true
     },
     {
       "epoch": 23,
-      "loss": 0.7209364916827228,
-      "mean_max_person_score": 0.7196492504429173,
-      "patches_applied": 562
+      "loss": 0.741044361849089,
+      "mean_max_person_score": 0.7397493542851629,
+      "smoothed": 0.7459697185335933,
+      "patches_applied": 562,
+      "is_best": true
     },
     {
       "epoch": 24,
-      "loss": 0.7242609383286657,
-      "mean_max_person_score": 0.7229556280213434,
-      "patches_applied": 561
+      "loss": 0.7412955326002997,
+      "mean_max_person_score": 0.7399863487965351,
+      "smoothed": 0.742598426986385,
+      "patches_applied": 561,
+      "is_best": true
     },
     {
       "epoch": 25,
-      "loss": 0.729193734961587,
-      "mean_max_person_score": 0.7278702839000805,
-      "patches_applied": 560
+      "loss": 0.7516845287503423,
+      "mean_max_person_score": 0.7503598364623817,
+      "smoothed": 0.7437289260529183,
+      "patches_applied": 560,
+      "is_best": false
     },
     {
       "epoch": 26,
-      "loss": 0.7108465755307997,
-      "mean_max_person_score": 0.7095096578469148,
-      "patches_applied": 566
+      "loss": 0.7303632513896839,
+      "mean_max_person_score": 0.7290240268449526,
+      "smoothed": 0.7388954781197212,
+      "patches_applied": 566,
+      "is_best": true
     },
     {
       "epoch": 27,
-      "loss": 0.7013930090375848,
-      "mean_max_person_score": 0.7000436106243649,
-      "patches_applied": 556
+      "loss": 0.7292296403163189,
+      "mean_max_person_score": 0.7278757788039543,
+      "smoothed": 0.7373990690385973,
+      "patches_applied": 556,
+      "is_best": true
     },
     {
       "epoch": 28,
-      "loss": 0.7082342175213067,
-      "mean_max_person_score": 0.7068717439432401,
-      "patches_applied": 567
+      "loss": 0.7450416120322975,
+      "mean_max_person_score": 0.7436740833359796,
+      "smoothed": 0.7381840148487606,
+      "patches_applied": 567,
+      "is_best": false
     },
     {
       "epoch": 29,
-      "loss": 0.7150723982501674,
-      "mean_max_person_score": 0.7136960335679956,
-      "patches_applied": 563
+      "loss": 0.7353943860208666,
+      "mean_max_person_score": 0.7340091579669231,
+      "smoothed": 0.7369885766828382,
+      "patches_applied": 563,
+      "is_best": true
+    },
+    {
+      "epoch": 30,
+      "loss": 0.7384493673169935,
+      "mean_max_person_score": 0.737051332319105,
+      "smoothed": 0.734326875854183,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 31,
+      "loss": 0.7359909962963413,
+      "mean_max_person_score": 0.7345820149859866,
+      "smoothed": 0.7354384734823898,
+      "patches_applied": 558,
+      "is_best": false
+    },
+    {
+      "epoch": 32,
+      "loss": 0.7269118170480471,
+      "mean_max_person_score": 0.7254904508590698,
+      "smoothed": 0.7349614078934128,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 33,
+      "loss": 0.7351390928835482,
+      "mean_max_person_score": 0.7337049036412626,
+      "smoothed": 0.7329675719544694,
+      "patches_applied": 565,
+      "is_best": true
+    },
+    {
+      "epoch": 34,
+      "loss": 0.71947691650004,
+      "mean_max_person_score": 0.7180317430882841,
+      "smoothed": 0.7297720889787416,
+      "patches_applied": 560,
+      "is_best": true
+    },
+    {
+      "epoch": 35,
+      "loss": 0.7231415316865251,
+      "mean_max_person_score": 0.721684451038773,
+      "smoothed": 0.7266987127226752,
+      "patches_applied": 567,
+      "is_best": true
+    },
+    {
+      "epoch": 36,
+      "loss": 0.731267287924483,
+      "mean_max_person_score": 0.7297972907891145,
+      "smoothed": 0.7257417678833008,
+      "patches_applied": 561,
+      "is_best": true
+    },
+    {
+      "epoch": 37,
+      "loss": 0.7303060172377406,
+      "mean_max_person_score": 0.7288241611944662,
+      "smoothed": 0.7264085099503801,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 38,
+      "loss": 0.7283214749516668,
+      "mean_max_person_score": 0.726828214284536,
+      "smoothed": 0.7250331720790347,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 39,
+      "loss": 0.7155463969385302,
+      "mean_max_person_score": 0.7140433482221655,
+      "smoothed": 0.724235493105811,
+      "patches_applied": 561,
+      "is_best": true
+    },
+    {
+      "epoch": 40,
+      "loss": 0.721641882045849,
+      "mean_max_person_score": 0.7201282873346999,
+      "smoothed": 0.7239242603649965,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 41,
+      "loss": 0.7174731976277119,
+      "mean_max_person_score": 0.7159492244591584,
+      "smoothed": 0.7211546470990052,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 42,
+      "loss": 0.7208400658659033,
+      "mean_max_person_score": 0.7193055765048878,
+      "smoothed": 0.7192509301610895,
+      "patches_applied": 567,
+      "is_best": true
+    },
+    {
+      "epoch": 43,
+      "loss": 0.7326593866219392,
+      "mean_max_person_score": 0.7311149062337102,
+      "smoothed": 0.7201082685509244,
+      "patches_applied": 563,
+      "is_best": false
+    },
+    {
+      "epoch": 44,
+      "loss": 0.7153956551809568,
+      "mean_max_person_score": 0.7138410339484343,
+      "smoothed": 0.7200678056961781,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 45,
+      "loss": 0.70134357745583,
+      "mean_max_person_score": 0.699779529829283,
+      "smoothed": 0.7159980541950948,
+      "patches_applied": 557,
+      "is_best": true
+    },
+    {
+      "epoch": 46,
+      "loss": 0.7165932574787656,
+      "mean_max_person_score": 0.7150203263437426,
+      "smoothed": 0.7158122745720116,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 47,
+      "loss": 0.7077667431251423,
+      "mean_max_person_score": 0.7061839369503228,
+      "smoothed": 0.7131879466610986,
+      "patches_applied": 562,
+      "is_best": true
+    },
+    {
+      "epoch": 48,
+      "loss": 0.7269816849682782,
+      "mean_max_person_score": 0.725389488645502,
+      "smoothed": 0.7120428631434569,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 49,
+      "loss": 0.7092419234482018,
+      "mean_max_person_score": 0.7076415951187546,
+      "smoothed": 0.7108029753775209,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 50,
+      "loss": 0.7345663196331745,
+      "mean_max_person_score": 0.7329562564153929,
+      "smoothed": 0.717438320694743,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 51,
+      "loss": 0.7219620057054468,
+      "mean_max_person_score": 0.7203405612223858,
+      "smoothed": 0.7185023676704716,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 52,
+      "loss": 0.7176324644604245,
+      "mean_max_person_score": 0.7160013285843102,
+      "smoothed": 0.7204658459972691,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 53,
+      "loss": 0.7089260719917916,
+      "mean_max_person_score": 0.7072867251731254,
+      "smoothed": 0.7168452933027938,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 54,
+      "loss": 0.7082286452924883,
+      "mean_max_person_score": 0.7065816038363689,
+      "smoothed": 0.7166332950463167,
+      "patches_applied": 563,
+      "is_best": false
+    },
+    {
+      "epoch": 55,
+      "loss": 0.7237603438867105,
+      "mean_max_person_score": 0.7221052630527599,
+      "smoothed": 0.71446309637379,
+      "patches_applied": 560,
+      "is_best": false
+    },
+    {
+      "epoch": 56,
+      "loss": 0.7054119545060236,
+      "mean_max_person_score": 0.7037497291693816,
+      "smoothed": 0.7111449299631892,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 57,
+      "loss": 0.7188554019541353,
+      "mean_max_person_score": 0.7171884871817924,
+      "smoothed": 0.7113823616826856,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 58,
+      "loss": 0.7114086328326045,
+      "mean_max_person_score": 0.709736173217361,
+      "smoothed": 0.7118722512915328,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 59,
+      "loss": 0.7050565191217371,
+      "mean_max_person_score": 0.7033773032394616,
+      "smoothed": 0.7112313911721513,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 60,
+      "loss": 0.7133954908396747,
+      "mean_max_person_score": 0.7117124940897968,
+      "smoothed": 0.7091528373795587,
+      "patches_applied": 552,
+      "is_best": true
+    },
+    {
+      "epoch": 61,
+      "loss": 0.7040330872342393,
+      "mean_max_person_score": 0.7023439342911179,
+      "smoothed": 0.708871678403906,
+      "patches_applied": 563,
+      "is_best": true
+    },
+    {
+      "epoch": 62,
+      "loss": 0.6932457282736495,
+      "mean_max_person_score": 0.6915506398355639,
+      "smoothed": 0.7037441089346602,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 63,
+      "loss": 0.7071618921047932,
+      "mean_max_person_score": 0.7054608834756387,
+      "smoothed": 0.7028890509863157,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 64,
+      "loss": 0.7001000473628173,
+      "mean_max_person_score": 0.6983925708242364,
+      "smoothed": 0.7018921045032707,
+      "patches_applied": 568,
+      "is_best": true
+    },
+    {
+      "epoch": 65,
+      "loss": 0.7058679840049228,
+      "mean_max_person_score": 0.7041536416556384,
+      "smoothed": 0.7003803340164391,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 66,
+      "loss": 0.6975587872234551,
+      "mean_max_person_score": 0.6958377006891612,
+      "smoothed": 0.6990790872960477,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 67,
+      "loss": 0.7029542608841045,
+      "mean_max_person_score": 0.7012268965308731,
+      "smoothed": 0.7010143386351096,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 68,
+      "loss": 0.7051331449199367,
+      "mean_max_person_score": 0.7033995857109895,
+      "smoothed": 0.7006020790821796,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 69,
+      "loss": 0.7012753470523937,
+      "mean_max_person_score": 0.6995360432444392,
+      "smoothed": 0.7008307735662203,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 70,
+      "loss": 0.7066363676174267,
+      "mean_max_person_score": 0.704890050598093,
+      "smoothed": 0.7009780553547111,
+      "patches_applied": 560,
+      "is_best": false
+    },
+    {
+      "epoch": 71,
+      "loss": 0.6991040448884707,
+      "mean_max_person_score": 0.6973527911547068,
+      "smoothed": 0.7012810734478203,
+      "patches_applied": 560,
+      "is_best": false
+    },
+    {
+      "epoch": 72,
+      "loss": 0.6988742375696028,
+      "mean_max_person_score": 0.6971180310120454,
+      "smoothed": 0.7004593003440547,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 73,
+      "loss": 0.7038890469718624,
+      "mean_max_person_score": 0.702127614536801,
+      "smoothed": 0.700204906109217,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 74,
+      "loss": 0.7091100167583775,
+      "mean_max_person_score": 0.7073438328665655,
+      "smoothed": 0.7017664640336424,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 75,
+      "loss": 0.695506434182863,
+      "mean_max_person_score": 0.6937347118918961,
+      "smoothed": 0.699535396292403,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 76,
+      "loss": 0.6854592666432664,
+      "mean_max_person_score": 0.6836816910150889,
+      "smoothed": 0.6968011762644795,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 77,
+      "loss": 0.6954191609008892,
+      "mean_max_person_score": 0.6936351173632854,
+      "smoothed": 0.6961045935347274,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 78,
+      "loss": 0.6885303275005238,
+      "mean_max_person_score": 0.6867408510800954,
+      "smoothed": 0.6930272408433863,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 79,
+      "loss": 0.6948207431548351,
+      "mean_max_person_score": 0.6930243324589085,
+      "smoothed": 0.6901633407618549,
+      "patches_applied": 567,
+      "is_best": true
+    },
+    {
+      "epoch": 80,
+      "loss": 0.6980613220382381,
+      "mean_max_person_score": 0.6962568260527946,
+      "smoothed": 0.6906677635940346,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 81,
+      "loss": 0.7063299739682997,
+      "mean_max_person_score": 0.7045192315771773,
+      "smoothed": 0.6948352717064522,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 82,
+      "loss": 0.6903894575866493,
+      "mean_max_person_score": 0.6885729262957702,
+      "smoothed": 0.6938228334929492,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 83,
+      "loss": 0.7091227995382773,
+      "mean_max_person_score": 0.7073024978508821,
+      "smoothed": 0.6979351628471064,
+      "patches_applied": 562,
+      "is_best": false
+    },
+    {
+      "epoch": 84,
+      "loss": 0.7001068833711985,
+      "mean_max_person_score": 0.698281966351174,
+      "smoothed": 0.6989866896255597,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 85,
+      "loss": 0.705929015133832,
+      "mean_max_person_score": 0.7040996430693446,
+      "smoothed": 0.7005552530288697,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 86,
+      "loss": 0.6928537616858611,
+      "mean_max_person_score": 0.6910199812940649,
+      "smoothed": 0.6978554029722471,
+      "patches_applied": 559,
+      "is_best": false
+    },
+    {
+      "epoch": 87,
+      "loss": 0.7013434203895362,
+      "mean_max_person_score": 0.6995041885891476,
+      "smoothed": 0.7000416554309227,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 88,
+      "loss": 0.6854958598678177,
+      "mean_max_person_score": 0.6836508480278222,
+      "smoothed": 0.6953113254663107,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 89,
+      "loss": 0.6923412358438646,
+      "mean_max_person_score": 0.6904902184331739,
+      "smoothed": 0.6937529758827107,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 90,
+      "loss": 0.6891805223516516,
+      "mean_max_person_score": 0.6873256918546315,
+      "smoothed": 0.6903981856397681,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 91,
+      "loss": 0.6803924940727852,
+      "mean_max_person_score": 0.6785336507333292,
+      "smoothed": 0.6879009195276209,
+      "patches_applied": 566,
+      "is_best": true
+    },
+    {
+      "epoch": 92,
+      "loss": 0.7057715066381403,
+      "mean_max_person_score": 0.7039085723258354,
+      "smoothed": 0.6887817962749584,
+      "patches_applied": 562,
+      "is_best": false
+    },
+    {
+      "epoch": 93,
+      "loss": 0.6933984337626277,
+      "mean_max_person_score": 0.6915317532178518,
+      "smoothed": 0.6903579773129643,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 94,
+      "loss": 0.6982312524640882,
+      "mean_max_person_score": 0.6963609908078168,
+      "smoothed": 0.6915321317878929,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 95,
+      "loss": 0.6874600149489738,
+      "mean_max_person_score": 0.6855852837498123,
+      "smoothed": 0.6911840501669291,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 96,
+      "loss": 0.6807608556103062,
+      "mean_max_person_score": 0.678881637147955,
+      "smoothed": 0.6912536474498543,
+      "patches_applied": 564,
+      "is_best": false
+    },
+    {
+      "epoch": 97,
+      "loss": 0.6983751485476623,
+      "mean_max_person_score": 0.696490877383464,
+      "smoothed": 0.68977010846138,
+      "patches_applied": 562,
+      "is_best": false
+    },
+    {
+      "epoch": 98,
+      "loss": 0.6913477713997299,
+      "mean_max_person_score": 0.6894570170222102,
+      "smoothed": 0.6893551612222517,
+      "patches_applied": 565,
+      "is_best": false
+    },
+    {
+      "epoch": 99,
+      "loss": 0.6796324905511495,
+      "mean_max_person_score": 0.677735611393645,
+      "smoothed": 0.6856300853394173,
+      "patches_applied": 564,
+      "is_best": true
+    },
+    {
+      "epoch": 100,
+      "loss": 0.6846297367199047,
+      "mean_max_person_score": 0.6827276316848961,
+      "smoothed": 0.6850585549264341,
+      "patches_applied": 568,
+      "is_best": true
+    },
+    {
+      "epoch": 101,
+      "loss": 0.6852101828600909,
+      "mean_max_person_score": 0.6833027633460792,
+      "smoothed": 0.6859427801660589,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 102,
+      "loss": 0.6841473829101872,
+      "mean_max_person_score": 0.6822337645131189,
+      "smoothed": 0.6830913575919899,
+      "patches_applied": 565,
+      "is_best": true
+    },
+    {
+      "epoch": 103,
+      "loss": 0.6859009451157337,
+      "mean_max_person_score": 0.683982393226108,
+      "smoothed": 0.6819964328327695,
+      "patches_applied": 562,
+      "is_best": true
+    },
+    {
+      "epoch": 104,
+      "loss": 0.698720796688183,
+      "mean_max_person_score": 0.6967981812116262,
+      "smoothed": 0.6858089467963657,
+      "patches_applied": 566,
+      "is_best": false
+    },
+    {
+      "epoch": 105,
+      "loss": 0.6736879421247018,
+      "mean_max_person_score": 0.6717622135136578,
+      "smoothed": 0.6836158631621181,
+      "patches_applied": 568,
+      "is_best": false
+    },
+    {
+      "epoch": 106,
+      "loss": 0.6870797485918612,
+      "mean_max_person_score": 0.6851491493147772,
+      "smoothed": 0.6839851403558577,
+      "patches_applied": 563,
+      "is_best": false
+    },
+    {
+      "epoch": 107,
+      "loss": 0.6801227838606447,
+      "mean_max_person_score": 0.6781880944161802,
+      "smoothed": 0.6831760063364699,
+      "patches_applied": 567,
+      "is_best": false
+    },
+    {
+      "epoch": 108,
+      "loss": 0.6955400439533027,
+      "mean_max_person_score": 0.6936005966083424,
+      "smoothed": 0.6850996470129168,
+      "patches_applied": 566,
+      "is_best": false
     }
   ],
-  "steps": 1110,
-  "seconds": 184.19683814048767
+  "steps": 4033,
+  "seconds": 637.71240234375,
+  "early_stopping": {
+    "patience": 30,
+    "min_delta": 0.003,
+    "window": 5,
+    "epochs_run": 109,
+    "best_epoch": 103,
+    "best_smoothed": 0.6819964328327695,
+    "stopped_early": true,
+    "epochs_without_improvement": 30
+  },
+  "saved_epoch": 103,
+  "saved_steps": 3848
 }
