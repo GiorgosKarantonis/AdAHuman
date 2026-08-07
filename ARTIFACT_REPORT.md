@@ -8,8 +8,15 @@ Edge-Oriented Computer Vision Systems**
 | Version | 1.0 |
 | Date | 2026-08-07 |
 | Repository | https://github.com/GiorgosKarantonis/AdAHuman |
-| Commit | `5dfc953a78ca1d244aff7ea88cae6bde878b95f1` |
+| Tag | `v1.0` |
+| Archive | `adahuman-1.0.tar.gz`, produced by `git archive` from the tag |
 | Licence | Apache 2.0 for original code; see `NOTICE` for scope |
+
+Cite this artifact by its **tag**. A commit hash cannot appear in a document the
+commit contains, and the tag resolves to exactly one commit, which every run
+record in `logs/` names independently. The archive digest is published with the
+release; `git archive` is deterministic, so anyone can regenerate a
+byte-identical archive from the tag and check it.
 
 This report describes what was built, what was measured, what the measurements
 support, and what they do not. Every figure quoted here is reproduced from a
@@ -326,7 +333,7 @@ ones that most constrain the conclusions:
 
 ```bash
 git clone https://github.com/GiorgosKarantonis/AdAHuman.git
-cd AdAHuman && git checkout 5dfc953
+cd AdAHuman && git checkout v1.0
 
 python3.11 -m venv .venv && .venv/bin/pip install -r requirements.lock
 bash scripts/00_fetch_coco.sh                      # ~1.8 GB, public
@@ -367,7 +374,7 @@ library version produce a different patch.
 
 ---
 
-*Every figure in this report is drawn from a file in `results/` at commit
-`5dfc953`. `scripts/verify_report.py` re-derives each one from its source file
+*Every figure in this report is drawn from a file in `results/` at tag `v1.0`.
+`scripts/verify_report.py` re-derives each one from its source file
 and fails if the document and the data disagree — it caught a p95 latency
 written here as 78.4 ms when the recorded value rounds to 78.3.*
