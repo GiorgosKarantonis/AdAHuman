@@ -1,4 +1,6 @@
-# AdAHuman Evaluation Protocol
+# Evaluation Protocol
+
+AdAHuman: Deployment-Aware Adversarial Resilience Evaluation for Edge-Oriented Computer Vision Systems
 
 A deployment-aware evaluation of adversarial patch attacks against an
 edge-oriented person detector, with a runtime feature-distance diagnostic and a

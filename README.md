@@ -1,7 +1,8 @@
-# AdAHuman
+# AdAHuman: Deployment-Aware Adversarial Resilience Evaluation for Edge-Oriented Computer Vision Systems
 
-A deployment-aware evaluation of adversarial patch attacks against an
-edge-oriented person detector.
+An empirical study of whether security properties measured during model
+development survive the transition into a deployment environment, using
+adversarial patch attacks against an edge-oriented person detector.
 
 The question is narrow and empirical: when a person-detection model is attacked
 with an optimized patch, and when that same model is converted for a CPU

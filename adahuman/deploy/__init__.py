@@ -1,1 +1,2 @@
-"""AdAHuman: deployment-aware adversarial evaluation for edge computer vision."""
+"""AdAHuman: deployment-aware adversarial resilience evaluation for
+edge-oriented computer vision systems."""
