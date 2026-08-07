@@ -19,15 +19,22 @@ when the result is negative.
 | Protocol frozen | done — `configs/protocol_v1.yaml`, pools frozen 2026-08-05 |
 | Pools frozen | done — 4 disjoint pools, manifests digested |
 | RQ1a clean baseline | done — `results/rq1_clean_baseline.json` |
-| RQ1b patch attack | implemented and dry-run; GPU training pending |
+| RQ1b patch attack | patch trained (30 epochs, Colab T4); held-out evaluation not yet run |
 | RQ3 monitor fit | done — `results/rq3_monitor_fit.json` |
-| RQ3 monitor evaluation | implemented and dry-run; needs the trained patch |
+| RQ3 monitor evaluation | implemented; waiting on the held-out attack run |
 | RQ4 ONNX export and CPU benchmark | done — `results/rq4_export.json`, `results/rq4_benchmark.json` |
 | RQ5 reproducibility package | in progress |
 
 Stages 05 and 07 have been exercised end-to-end with an untrained patch on a
 24-image subset, so the post-training path is known to run. Those smoke outputs
 were deleted; their run logs remain in `logs/` and are marked as smoke tests.
+
+The trained patch is **not yet converged**. Over 30 epochs the mean maximum
+person score fell from 0.809 to about 0.71 and was still descending, well above
+the 0.5 decision threshold. Whether to train further is a decision to be taken
+on `attack_dev` evidence alone, before the held-out pool is spent — it is spent
+once, and a patch chosen after seeing held-out results would not be an
+out-of-sample measurement.
 
 No result is claimed until it appears in `results/` with a dated run log in
 `logs/`. See [`LIMITATIONS.md`](LIMITATIONS.md) for what these measurements do

@@ -75,6 +75,47 @@ was a secondary stabilization that mattered less than expected. No held-out
 measurement was ever produced under the original version. The superseded fit
 and its run log remain in `logs/`.
 
+## The patch was optimized in a different environment than it is evaluated in
+
+The adversarial patch is optimized on a Google Colab GPU and evaluated locally
+on CPU. Those two environments do not run the same library versions:
+
+| | Patch optimization | Everything else |
+|---|---|---|
+| torch | 2.11.0+cu128 | 2.2.2 |
+| torchvision | 0.26.0+cu128 | 0.17.2 |
+| device | Tesla T4 | Intel i5-8257U |
+
+The local versions are the ones pinned in `configs/protocol_v1.yaml` and
+`requirements.lock`; the Colab versions are recorded in the training run log
+under `logs/`. The local pin is not arbitrary — torch 2.2.2 is the last release
+with macOS x86_64 wheels, and the RQ4 timings must be measured on the CPU they
+describe.
+
+The detector weights are identical in both, verified by the sha256 pinned in the
+protocol. But nine minor versions separate the two torchvision releases, and the
+SSDLite implementation, its anchor generation, and its postprocessing may differ
+in ways that change the gradients the patch was optimized against.
+
+Two consequences:
+
+1. **The reported attack strength is a lower bound**, not a white-box result. A
+   patch optimized against the exact implementation that scores it would be at
+   least as strong. What is measured here includes an unquantified amount of
+   implementation transfer.
+
+2. **A weak attack result is ambiguous.** Under-training and cross-version
+   transfer loss are not separable from the held-out numbers alone. Attributing
+   a weak result to one rather than the other would require an experiment that
+   has not been run — optimizing under matched versions, or evaluating the same
+   patch under both.
+
+This is disclosed rather than corrected because correcting it means either
+pinning Colab to versions it does not ship (uncertain, given its Python
+version), or moving the local pin forward and discarding the RQ4 timings and
+clean baseline already measured. Neither is obviously right, and the honest
+description costs less than a misleading fix.
+
 ## Result-dependent limitations
 
 To be completed when results exist. Any negative or mixed finding for the RQ3
