@@ -1,0 +1,53 @@
+{
+  "duration_seconds": 85.235,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T04:58:19.035159+00:00",
+  "git_commit": "f61020ebc86ae9c476c34024fe17c8818ef82870",
+  "git_dirty": true,
+  "git_dirty_paths": [
+    " M adahuman/config.py",
+    " M adahuman/utils/run_log.py",
+    " M configs/protocol_v1.yaml",
+    " M scripts/04_train_patch.py",
+    " M scripts/05_eval_attack.py"
+  ],
+  "inputs": {
+    "patch": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/patch_v1.pt",
+      "sha256": "6fad168ad8ef191e5d5c09b7e96407bb229591e07727ffc43656511c2f673040"
+    }
+  },
+  "notes": [
+    "DEVELOPMENT run on attack_dev. Informs whether the attack is worth evaluating on held-out data; it is not the reported attack result."
+  ],
+  "outputs": {
+    "features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_eval_dev.npz",
+      "sha256": "7620ae9dbd8c342f9f5bd102dca022f81ffb72b2431b30dc946d0521226a1337"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq1_attack_dev.json",
+      "sha256": "975ebe72c922cfe719c30380cf0675b539deb27d8046e0a9fd329724b405eeac"
+    }
+  },
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "eval_attack_dev",
+  "started_at_utc": "2026-08-07T04:56:53.800383+00:00"
+}

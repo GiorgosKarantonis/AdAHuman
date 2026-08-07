@@ -75,20 +75,31 @@ def main() -> int:
         help="images per pool; marks all outputs as a smoke test, not a result",
     )
     parser.add_argument(
+        "--dev", action="store_true",
+        help="score on attack_dev instead of the held-out pool; not a result",
+    )
+    parser.add_argument(
         "--untrained-patch", action="store_true",
         help="use a random patch: the occlusion control condition",
     )
     args = parser.parse_args()
 
     smoke = args.limit is not None
+    stage = "eval_attack_dev" if args.dev else STAGE
+    pools = ("attack_dev",) if args.dev else ("eval_untouched", "negative")
 
-    protocol = load_protocol(STAGE, args.protocol, allow_unfrozen=smoke)
+    protocol = load_protocol(stage, args.protocol, allow_unfrozen=smoke)
     seed = protocol.get("seed")
     seed_everything(seed)
-    log = RunLog(STAGE, args.protocol)
-    log.pools_read("eval_untouched", "negative")
+    log = RunLog(stage, args.protocol)
+    log.pools_read(*pools)
     if smoke:
         log.set("freeze_check_bypassed", True)
+    if args.dev:
+        log.note(
+            "DEVELOPMENT run on attack_dev. Informs whether the attack is worth "
+            "evaluating on held-out data; it is not the reported attack result."
+        )
 
     if args.untrained_patch:
         # The occlusion control. A random patch of the same size, placed the
@@ -136,7 +147,7 @@ def main() -> int:
     results: dict[str, object] = {}
     feature_store: dict[str, np.ndarray] = {}
 
-    for pool in ("eval_untouched", "negative"):
+    for pool in pools:
         print(f"\n[{pool}]")
         generator = torch.Generator().manual_seed(seed + EVAL_SEED_OFFSET)
 
@@ -249,7 +260,11 @@ def main() -> int:
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     RESULTS.mkdir(parents=True, exist_ok=True)
 
-    suffix = "_smoke" if smoke else ("_control" if args.untrained_patch else "")
+    suffix = (
+        ("_dev" if args.dev else "")
+        + ("_smoke" if smoke else "")
+        + ("_control" if args.untrained_patch else "")
+    )
     features_path = ARTIFACTS / f"features_eval{suffix}.npz"
     np.savez_compressed(features_path, **feature_store)
 

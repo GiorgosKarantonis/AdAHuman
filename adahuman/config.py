@@ -91,6 +91,14 @@ STAGES: dict[str, Stage] = {
     "train_patch": Stage(
         "train_patch", frozenset({"attack_dev", "reference"}), _MODEL_FIELDS
     ),
+    # Measures the patch on the development pool. Exists so the question "is
+    # this attack worth spending the held-out pool on?" can be answered without
+    # spending it -- the held-out pool is measured once, and a disappointing
+    # result there cannot be acted on afterwards without invalidating it.
+    # Entitled to attack_dev only, so it cannot become a second held-out look.
+    "eval_attack_dev": Stage(
+        "eval_attack_dev", frozenset({"attack_dev"}), _MODEL_FIELDS
+    ),
     # Single scored run of the frozen patch.
     "eval_attack": Stage(
         "eval_attack",

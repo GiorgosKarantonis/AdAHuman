@@ -1,0 +1,112 @@
+{
+  "attack_dev": {
+    "attacked": {
+      "coco_map": {
+        "AP@.50": 0.5901804472612017,
+        "AP@.75": 0.3058107238518149,
+        "AP@[.50:.95]": 0.3205892917221664,
+        "AP_large": 0.5476157822665181,
+        "AP_medium": 0.30673106153925483,
+        "AP_small": 0.023812367139022524,
+        "AR@1": 0.16525353283458022,
+        "AR@10": 0.3657522859517872,
+        "AR@100": 0.4384871155444722,
+        "AR_large": 0.66810551558753,
+        "AR_medium": 0.434516765285996,
+        "AR_small": 0.1028673835125448
+      },
+      "grouped_recall": {
+        "patched": {
+          "detected": 414,
+          "n_targets": 572,
+          "recall": 0.7237762237762237,
+          "recall_ci95": [
+            0.6857330290216266,
+            0.7588337802600118
+          ]
+        },
+        "unpatched": {
+          "detected": 72,
+          "n_targets": 631,
+          "recall": 0.11410459587955626,
+          "recall_ci95": [
+            0.09159773703042765,
+            0.14128160121463612
+          ]
+        }
+      },
+      "operating_point": {
+        "false_negatives": 717,
+        "false_positives": 60,
+        "false_positives_per_image": 0.2,
+        "missed_detection_rate": 0.5960099750623442,
+        "n_detections": 546,
+        "n_ground_truth": 1203,
+        "n_images": 300,
+        "precision": 0.8901098901098901,
+        "recall": 0.40399002493765584,
+        "true_positives": 486
+      }
+    },
+    "clean": {
+      "coco_map": {
+        "AP@.50": 0.6379735242680671,
+        "AP@.75": 0.3637306947062098,
+        "AP@[.50:.95]": 0.36661452355843316,
+        "AP_large": 0.6303838731608495,
+        "AP_medium": 0.34370979797154605,
+        "AP_small": 0.021532188196181197,
+        "AR@1": 0.17572734829592684,
+        "AR@10": 0.40290939318370744,
+        "AR@100": 0.4679966749792187,
+        "AR_large": 0.7311750599520384,
+        "AR_medium": 0.45384615384615384,
+        "AR_small": 0.10035842293906809
+      },
+      "grouped_recall": {
+        "patched": {
+          "detected": 463,
+          "n_targets": 572,
+          "recall": 0.8094405594405595,
+          "recall_ci95": [
+            0.7752321351530586,
+            0.8395204058067073
+          ]
+        },
+        "unpatched": {
+          "detected": 77,
+          "n_targets": 631,
+          "recall": 0.12202852614896989,
+          "recall_ci95": [
+            0.09875149781968853,
+            0.14987980473245807
+          ]
+        }
+      },
+      "operating_point": {
+        "false_negatives": 663,
+        "false_positives": 39,
+        "false_positives_per_image": 0.13,
+        "missed_detection_rate": 0.5511221945137157,
+        "n_detections": 579,
+        "n_ground_truth": 1203,
+        "n_images": 300,
+        "precision": 0.9326424870466321,
+        "recall": 0.4488778054862843,
+        "true_positives": 540
+      }
+    },
+    "n_images": 300,
+    "n_patched_targets": 572,
+    "suppression": {
+      "ci95": [
+        0.11558536499004488,
+        0.1796785971458388
+      ],
+      "detected_when_clean": 463,
+      "rate": 0.1447084233261339,
+      "revealed_only_under_attack": 18,
+      "suppressed": 67
+    }
+  }
+}

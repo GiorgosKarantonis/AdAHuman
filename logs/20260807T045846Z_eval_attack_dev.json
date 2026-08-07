@@ -1,0 +1,49 @@
+{
+  "duration_seconds": 81.219,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T05:00:08.009247+00:00",
+  "git_commit": "f61020ebc86ae9c476c34024fe17c8818ef82870",
+  "git_dirty": true,
+  "git_dirty_paths": [
+    " M adahuman/config.py",
+    " M adahuman/utils/run_log.py",
+    " M configs/protocol_v1.yaml",
+    " M scripts/04_train_patch.py",
+    " M scripts/05_eval_attack.py"
+  ],
+  "inputs": {},
+  "notes": [
+    "DEVELOPMENT run on attack_dev. Informs whether the attack is worth evaluating on held-out data; it is not the reported attack result.",
+    "CONTROL: untrained random patch; measures occlusion, not attack"
+  ],
+  "outputs": {
+    "features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_eval_dev_control.npz",
+      "sha256": "75527199f87a672065b817be8ce0c6fea2aa1beee1b30bd267610897274bb05e"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq1_attack_dev_control.json",
+      "sha256": "62779c77d54211de1fd847ef9290110a99e1467ea8d923f2e1b592bc2cb80f71"
+    }
+  },
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "eval_attack_dev",
+  "started_at_utc": "2026-08-07T04:58:46.790115+00:00"
+}
