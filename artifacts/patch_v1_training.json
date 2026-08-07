@@ -1,0 +1,186 @@
+{
+  "history": [
+    {
+      "epoch": 0,
+      "loss": 0.8094229182681522,
+      "mean_max_person_score": 0.8090243838928841,
+      "patches_applied": 565
+    },
+    {
+      "epoch": 1,
+      "loss": 0.815894370143478,
+      "mean_max_person_score": 0.815360244866964,
+      "patches_applied": 568
+    },
+    {
+      "epoch": 2,
+      "loss": 0.7949107724267084,
+      "mean_max_person_score": 0.7942899932732453,
+      "patches_applied": 565
+    },
+    {
+      "epoch": 3,
+      "loss": 0.8012962099668142,
+      "mean_max_person_score": 0.8006018625723349,
+      "patches_applied": 563
+    },
+    {
+      "epoch": 4,
+      "loss": 0.7897960495304417,
+      "mean_max_person_score": 0.7890467820940791,
+      "patches_applied": 567
+    },
+    {
+      "epoch": 5,
+      "loss": 0.7758088289080439,
+      "mean_max_person_score": 0.7750045318861265,
+      "patches_applied": 568
+    },
+    {
+      "epoch": 6,
+      "loss": 0.7924607573328791,
+      "mean_max_person_score": 0.791612315822292,
+      "patches_applied": 564
+    },
+    {
+      "epoch": 7,
+      "loss": 0.7874604399139816,
+      "mean_max_person_score": 0.7865667455905193,
+      "patches_applied": 559
+    },
+    {
+      "epoch": 8,
+      "loss": 0.7793838848938813,
+      "mean_max_person_score": 0.7784520371540172,
+      "patches_applied": 565
+    },
+    {
+      "epoch": 9,
+      "loss": 0.7773179975715844,
+      "mean_max_person_score": 0.7763501888996845,
+      "patches_applied": 563
+    },
+    {
+      "epoch": 10,
+      "loss": 0.7581091249311293,
+      "mean_max_person_score": 0.75710704519942,
+      "patches_applied": 566
+    },
+    {
+      "epoch": 11,
+      "loss": 0.758661869409922,
+      "mean_max_person_score": 0.7576306462287903,
+      "patches_applied": 566
+    },
+    {
+      "epoch": 12,
+      "loss": 0.7690728435645232,
+      "mean_max_person_score": 0.7680114394909626,
+      "patches_applied": 563
+    },
+    {
+      "epoch": 13,
+      "loss": 0.7600418232582711,
+      "mean_max_person_score": 0.7589536744195062,
+      "patches_applied": 564
+    },
+    {
+      "epoch": 14,
+      "loss": 0.759113614623611,
+      "mean_max_person_score": 0.7580010262695519,
+      "patches_applied": 568
+    },
+    {
+      "epoch": 15,
+      "loss": 0.7504446707867287,
+      "mean_max_person_score": 0.7493095422113264,
+      "patches_applied": 564
+    },
+    {
+      "epoch": 16,
+      "loss": 0.7311579134013202,
+      "mean_max_person_score": 0.7300021857828707,
+      "patches_applied": 566
+    },
+    {
+      "epoch": 17,
+      "loss": 0.7311808193052137,
+      "mean_max_person_score": 0.7300014769708788,
+      "patches_applied": 567
+    },
+    {
+      "epoch": 18,
+      "loss": 0.7515640677632512,
+      "mean_max_person_score": 0.7503624139605342,
+      "patches_applied": 565
+    },
+    {
+      "epoch": 19,
+      "loss": 0.7429825583019772,
+      "mean_max_person_score": 0.7417635031648584,
+      "patches_applied": 567
+    },
+    {
+      "epoch": 20,
+      "loss": 0.7397991596041499,
+      "mean_max_person_score": 0.7385629125543542,
+      "patches_applied": 559
+    },
+    {
+      "epoch": 21,
+      "loss": 0.7343976014369243,
+      "mean_max_person_score": 0.7331473021893888,
+      "patches_applied": 561
+    },
+    {
+      "epoch": 22,
+      "loss": 0.7288020398165729,
+      "mean_max_person_score": 0.7275339695247444,
+      "patches_applied": 565
+    },
+    {
+      "epoch": 23,
+      "loss": 0.7209364916827228,
+      "mean_max_person_score": 0.7196492504429173,
+      "patches_applied": 562
+    },
+    {
+      "epoch": 24,
+      "loss": 0.7242609383286657,
+      "mean_max_person_score": 0.7229556280213434,
+      "patches_applied": 561
+    },
+    {
+      "epoch": 25,
+      "loss": 0.729193734961587,
+      "mean_max_person_score": 0.7278702839000805,
+      "patches_applied": 560
+    },
+    {
+      "epoch": 26,
+      "loss": 0.7108465755307997,
+      "mean_max_person_score": 0.7095096578469148,
+      "patches_applied": 566
+    },
+    {
+      "epoch": 27,
+      "loss": 0.7013930090375848,
+      "mean_max_person_score": 0.7000436106243649,
+      "patches_applied": 556
+    },
+    {
+      "epoch": 28,
+      "loss": 0.7082342175213067,
+      "mean_max_person_score": 0.7068717439432401,
+      "patches_applied": 567
+    },
+    {
+      "epoch": 29,
+      "loss": 0.7150723982501674,
+      "mean_max_person_score": 0.7136960335679956,
+      "patches_applied": 563
+    }
+  ],
+  "steps": 1110,
+  "seconds": 184.19683814048767
+}

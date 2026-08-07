@@ -94,7 +94,7 @@ attack:
   init: random_uniform
   optimizer: adam
   learning_rate: 0.03
-  steps: 1110               # set after a timing probe on Colab
+  steps: PENDING               # set after a timing probe on Colab
   batch_size: 8
   # Total-variation weight. Penalizes high-frequency noise in the patch, after
   # Thys et al.; a patch of pure per-pixel noise is not physically realizable

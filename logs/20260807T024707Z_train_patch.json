@@ -1,0 +1,49 @@
+{
+  "duration_seconds": 186.384,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "2.0.2",
+    "onnxruntime": null,
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "python": "3.12.13",
+    "scikit_learn": "1.6.1",
+    "torch": "2.11.0+cu128",
+    "torch_cuda_available": true,
+    "torch_cuda_device": "Tesla T4",
+    "torchvision": "0.26.0+cu128"
+  },
+  "finished_at_utc": "2026-08-07T02:50:13.873128+00:00",
+  "git_commit": null,
+  "git_dirty": null,
+  "inputs": {},
+  "notes": [],
+  "outputs": {
+    "history": {
+      "path": "/content/adahuman/artifacts/patch_v1_training.json",
+      "sha256": "31e27274af9fa784d66b644161454c798e6d3e454e703a0fa153b0be6794bdc3"
+    },
+    "patch": {
+      "path": "/content/adahuman/artifacts/patch_v1.pt",
+      "sha256": "428df87bf9b13b453ab69b265a9ee81c74b9e3313814996bae6ca3bb92743fb6"
+    },
+    "preview": {
+      "path": "/content/adahuman/artifacts/patch_v1.png",
+      "sha256": "706fc2119b6fddb16bb00fc2d3427353bc2e8e26562ff869c4c5702954c387ee"
+    }
+  },
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/content/adahuman/configs/protocol_v1.yaml",
+    "sha256": "dae775c8e658d9e11bcd2a5f66a2b67c7cc351745c339ff025f6a1842fb9bee1"
+  },
+  "stage": "train_patch",
+  "started_at_utc": "2026-08-07T02:47:07.489363+00:00",
+  "training": {
+    "epochs": 30,
+    "steps": 1110,
+    "steps_per_sec": 6.0261620731697825
+  }
+}
