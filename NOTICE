@@ -1,0 +1,108 @@
+AdAHuman
+Copyright 2026 Georgios Karantonis
+
+This product includes software developed for the AdAHuman deployment-aware
+adversarial evaluation project.
+
+
+SCOPE OF THIS LICENSE
+---------------------
+
+The Apache License 2.0 in LICENSE applies only to the original code authored
+for this project -- the contents of adahuman/, scripts/, configs/, and
+notebooks/, together with the documentation in this repository.
+
+It does not apply to, and does not purport to relicense, any third-party
+library, pretrained model weight, dataset, or annotation used by this project.
+Those remain subject to their own licenses and terms.
+
+
+THIRD-PARTY DEPENDENCIES
+------------------------
+
+None of the following are redistributed in this repository. Each is fetched at
+run time from its own distributor, under its own terms.
+
+  PyTorch (torch)            BSD-3-Clause
+  torchvision               BSD-3-Clause
+  NumPy                     BSD-3-Clause
+  SciPy                     BSD-3-Clause
+  scikit-learn              BSD-3-Clause
+  psutil                    BSD-3-Clause
+  pycocotools               BSD-2-Clause
+  Pillow                    MIT-CMU (HPND)
+  PyYAML                    MIT
+  onnxruntime               MIT
+  ONNX                      Apache-2.0
+  tqdm                      MPL-2.0 and MIT
+
+Exact resolved versions are pinned in requirements.lock and recorded in every
+run log under logs/.
+
+
+MODEL WEIGHTS
+-------------
+
+The SSDLite320 MobileNetV3-Large detector uses the COCO_V1 pretrained weights
+distributed with torchvision under BSD-3-Clause. The weights are downloaded
+from torchvision at run time and are not redistributed here. Their sha256 is
+pinned in configs/protocol_v1.yaml so that a reviewer can confirm the exact
+checkpoint used.
+
+
+DATASET
+-------
+
+Evaluation uses the COCO 2017 validation split. Images and annotations are
+downloaded from cocodataset.org at run time by scripts/00_fetch_coco.sh and are
+not redistributed here.
+
+COCO annotations are made available under CC BY 4.0. The images themselves are
+subject to the terms under which their original Flickr contributors licensed
+them; COCO distributes them for non-commercial research use and does not own
+their copyright.
+
+This repository contains only image *identifiers* -- the pool manifests in
+configs/manifests/ list COCO image IDs, not image data.
+
+
+ATTACK COMPONENTS: WHAT IS INCLUDED AND WHY
+-------------------------------------------
+
+The project's dissemination policy reserves the right to release in limited
+form, withhold, or share only with qualified reviewers any attack component
+that would materially reduce the difficulty of targeting realistic deployed
+systems, and to identify what was limited and why.
+
+Nothing has been withheld from this release. The reasoning:
+
+  1. The person-suppression patch here is an independent reimplementation of a
+     method published in 2019 (Thys, Van Ranst and Goedeme, CVPRW 2019), for
+     which reference implementations have been publicly available since then.
+     It introduces no technique that is not already in the open literature.
+
+  2. It is optimized against a specific public pretrained checkpoint on a
+     general-purpose object-detection dataset. It is not tuned to any deployed
+     system, vendor product, camera model, or operational environment.
+
+  3. It is evaluated only digitally, under simulated transformations. No patch
+     was printed, photographed, or tested physically, and no claim is made that
+     the digital result transfers to a physical setting.
+
+  4. The artifact's purpose is measurement. Publishing the attack alongside the
+     evaluation protocol is what allows an independent party to reproduce and
+     challenge the reported numbers; withholding it would leave the defensive
+     claims unfalsifiable.
+
+This assessment covers the artifact as released. It should be revisited before
+any future release that adds physical-world patches, transfer attacks against
+undisclosed models, or evaluation against a specific deployed system.
+
+
+NO WARRANTY, AND INTENDED USE
+-----------------------------
+
+This is preliminary research software. See LIMITATIONS.md for what it does and
+does not establish. It is intended for security research, evaluation, and
+defensive work. It is not intended to be used to interfere with, evade, or
+degrade any security, safety, or monitoring system in operation.

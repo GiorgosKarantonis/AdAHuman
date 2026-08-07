@@ -154,6 +154,12 @@ public documentation. No employer or client source code, data, thresholds,
 learned parameters, or internal implementation details are used. Model weights
 and images are public and downloaded at run time rather than redistributed.
 
-Original code is intended for release under the Apache Licence 2.0.
-Third-party libraries, pretrained weights, and datasets remain under their own
-terms.
+Original code is released under the Apache License 2.0 — see
+[`LICENSE`](LICENSE). That covers `adahuman/`, `scripts/`, `configs/`,
+`notebooks/`, and the documentation, and nothing else.
+
+Third-party libraries, the pretrained detector weights, and the COCO dataset
+remain under their own terms and are not redistributed here; each is fetched at
+run time from its own distributor. [`NOTICE`](NOTICE) lists them with their
+licenses, and records why the attack code is published in full rather than
+limited or withheld.
