@@ -36,6 +36,58 @@ No result is claimed until it appears in `results/` with a dated run log in
 `logs/`. See [`LIMITATIONS.md`](LIMITATIONS.md) for what these measurements do
 not establish.
 
+## How it fits together
+
+Pool discipline first, because every number below depends on it. Four disjoint
+pools are fixed by seed before anything runs, and each stage declares which it
+may read. Patch optimization cannot reach the held-out pool even by mistake.
+
+```mermaid
+flowchart LR
+    COCO[("COCO val2017<br/>fetched at run time")] --> FREEZE["freeze_pools<br/>seed 20260805"]
+    FREEZE --> REF["reference<br/>500"]
+    FREEZE --> DEV["attack_dev<br/>300"]
+    FREEZE --> HELD["eval_untouched<br/>500"]
+    FREEZE --> NEG["negative<br/>250"]
+
+    REF -.->|"fit monitor<br/>export, benchmark"| USE1["development<br/>stages"]
+    DEV -.->|"optimize patch<br/>dev evaluation"| USE1
+    HELD -.->|"measured once,<br/>after freeze"| USE2["reported<br/>result"]
+    NEG -.-> USE2
+
+    style HELD fill:#fde7e7,stroke:#c33,stroke-width:2px
+    style USE2 fill:#fde7e7,stroke:#c33
+```
+
+The measurement chain is what makes this deployment-aware rather than a
+robustness benchmark. The same frozen model is carried through attack, runtime
+monitoring, and format conversion, so the three results are commensurable.
+
+```mermaid
+flowchart TD
+    M["SSDLite320 MobileNetV3<br/>COCO_V1, frozen"] --> BASE["clean baseline<br/>RQ1a"]
+
+    M --> TRAIN["patch optimization<br/>attack_dev, Colab GPU<br/>stops on plateau"]
+    TRAIN --> PATCH["patch_v1.pt<br/>3848 steps"]
+
+    PATCH --> DEVEVAL["dev evaluation<br/>attack_dev"]
+    DEVEVAL --> GATE{"worth spending<br/>the held-out pool?"}
+    GATE -->|"50.5% suppression<br/>vs 14.5% control"| EVAL
+
+    PATCH --> CTRL["random-patch control<br/>same size and placement"]
+    EVAL["held-out evaluation"] --> RQ1["RQ1 · 41.6% suppression<br/>9.9% occlusion floor"]
+    CTRL --> RQ1
+
+    EVAL --> FEATS["pooled backbone features<br/>clean · attacked"]
+    SHIFT["ordinary shift<br/>noise, blur, brightness,<br/>fog, JPEG"] --> FEATS
+    FEATS --> MON["feature-distance monitor<br/>threshold frozen on reference"]
+    MON --> RQ3["RQ3 · negative<br/>AUROC 0.586 vs shift"]
+
+    M --> ONNX["ONNX export<br/>opset 17, incl. NMS"]
+    ONNX --> BENCH["CPU benchmark<br/>interleaved"]
+    BENCH --> RQ4["RQ4 · fidelity exact<br/>0.78x median latency"]
+```
+
 ## Clean baseline
 
 `ssdlite320_mobilenet_v3_large`, COCO_V1 weights, person class, score threshold
@@ -139,6 +191,56 @@ and background load.
 
 This is a single machine at a single thread count. See
 [`LIMITATIONS.md`](LIMITATIONS.md) — the relative ordering can invert elsewhere.
+
+## Relevance to deployment-aware AI assurance
+
+This artifact demonstrates the core methodological challenge addressed by the
+proposed endeavor: evaluating whether security properties measured during model
+development remain meaningful after models transition into deployment
+environments. It intentionally studies the interaction between adversarial
+perturbations, runtime monitoring, and deployment-format conversion rather than
+treating robustness as an isolated model-development property.
+
+The three results are only interesting together, and the negative one carries
+most of the weight.
+
+**A defense that looks plausible in isolation fails against ordinary operating
+conditions.** The feature-distance monitor separates adversarial from clean
+inputs at AUROC 0.639 — weak, but not nothing, and enough to look promising if
+clean data were the only comparison drawn. Against the benign variation a camera
+actually encounters it collapses: 0.586 overall, and 0.498 against motion blur,
+which is chance. Evaluated the way such diagnostics often are, against pristine
+inputs, this monitor would have been reported as marginally useful. Evaluated
+against fog, blur and codec artefacts, it is not usable at all. The difference
+is not the method; it is which comparison the evaluation makes.
+
+**Deployment-format conversion has costs invisible to model-level evaluation.**
+Conversion fidelity is effectively exact — zero detection-count disagreements,
+maximum score deviation 1.9e-06 — so a purely numerical check would report the
+converted model as equivalent and stop there. It is nonetheless 22% slower at
+the median with materially worse tail latency, which is the property that
+determines whether a perception pipeline holds its frame budget. Equivalence and
+operational viability are different questions, and only one of them is answered
+by comparing outputs.
+
+**Attack strength is not a single number.** The patch suppresses 41.6% of
+held-out targets, but a random patch of identical size and placement suppresses
+9.9% by occlusion alone. Reported without that control the attack would appear
+roughly a quarter stronger than it is. The same holds for the development-to-
+held-out gap, 50.5% against 41.6%, which is visible only because the pools were
+separated before the patch was optimized.
+
+None of this establishes that these particular findings generalize. One model
+family, one attack objective, digital rather than physical patches, a
+non-adaptive adversary, and a single CPU. What it does establish is that the
+questions are separable and measurable: each of the three results would have
+been reported differently, and more favourably, under an evaluation that stopped
+at the model boundary. That gap between what is measured in development and what
+holds in deployment is the object of study, and reproducible measurement of it
+is the contribution this artifact is intended to demonstrate.
+
+See [`LIMITATIONS.md`](LIMITATIONS.md) for the full statement of what these
+measurements do not support.
 
 ## Design
 
