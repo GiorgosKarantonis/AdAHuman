@@ -45,6 +45,12 @@ rather than added retroactively.
    - **Timing uses eight cycled frames.** Enough to average over per-frame NMS
      cost, not enough to characterize the full distribution of scene
      complexity.
+   - **Run-to-run spread is larger than the reported precision suggests.**
+     Three independent benchmark runs gave median ratios of 0.78x, 0.80x and
+     0.82x, and p99 ratios from 0.66x to 0.78x. The machine is a passively
+     cooled laptop shared with other work. The ordering is stable across runs;
+     the point estimates are not, and should be read as 18-22% rather than as
+     any single figure.
 
 6. **Single dataset, single domain.** COCO val2017 is a general-purpose object
    detection dataset. It is not a critical-infrastructure or public-safety
@@ -115,6 +121,29 @@ pinning Colab to versions it does not ship (uncertain, given its Python
 version), or moving the local pin forward and discarding the RQ4 timings and
 clean baseline already measured. Neither is obviously right, and the honest
 description costs less than a misleading fix.
+
+## One run log carries a dirty flag that cannot be cleared
+
+Every stage records the commit it ran at and whether the source tree differed
+from it. Nine of the ten stages record a commit with `git_dirty: false`. The
+patch training run does not: it shows `dirty: true` at commit `df5e5e3`.
+
+The tree was not in fact modified. That run executed on Colab from a fresh
+`git clone`, which cannot be dirty. The flag is an artifact of the check itself,
+which at that commit ran `git status --porcelain` unscoped and therefore counted
+the untracked run logs that earlier stages in the same session had written. The
+scoping fix landed later, at `8417cf8`.
+
+It is not corrected because the only way to correct it is to retrain, and
+retraining produces a different patch. Every held-out result — the RQ1 attack
+figures, the occlusion control, the RQ3 monitor evaluation — was measured
+against the patch that this run produced. Regenerating the log to tidy a
+provenance flag would invalidate the results it supports, which is a plainly
+worse trade than recording the explanation here.
+
+The patch itself remains traceable: the run log names commit `df5e5e3`, the
+notebook clones that commit rather than unpacking an archive, and the training
+history, step count and score are recorded alongside it.
 
 ## Result-dependent limitations
 

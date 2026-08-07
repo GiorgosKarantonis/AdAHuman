@@ -171,26 +171,33 @@ over 200 iterations each:
 
 | | PyTorch | onnxruntime | ratio |
 |---|---|---|---|
-| median | 69.3 ms | 86.8 ms | 0.80x |
-| p95 | 75.1 ms | 108.4 ms | 0.69x |
-| p99 | 76.2 ms | 114.6 ms | 0.66x |
-| min | 57.5 ms | 37.7 ms | 1.53x |
-| throughput | 14.4 fps | 11.5 fps | 0.80x |
-| load memory | 19.2 MiB | 31.3 MiB | |
+| median | 72.0 ms | 87.3 ms | 0.82x |
+| p95 | 78.4 ms | 108.6 ms | 0.72x |
+| p99 | 87.1 ms | 111.0 ms | 0.78x |
+| min | 63.4 ms | 39.0 ms | 1.63x |
+| throughput | 13.9 fps | 11.5 fps | 0.82x |
+| load memory | 19.4 MiB | 30.2 MiB | |
 | model size | 13.25 MB | 13.46 MB | |
 
-**ONNX Runtime is slower here, not faster** — about 20% at the median, with a
-noticeably wider spread. That runs against the common assumption that exporting
-to ONNX buys throughput. It is reported as measured.
+**ONNX Runtime is slower here, not faster.** That runs against the common
+assumption that exporting to ONNX buys throughput, and it is reported as
+measured.
 
-The two paths were timed *interleaved* rather than one after the other. Running
-one path to completion before the other confounds the execution path with CPU
-thermal state and background load; a sequential run produced the same median
-ratio but much dirtier tails (PyTorch p99 109 ms against 76 ms interleaved).
+How much slower depends on the run. Three independent runs gave median ratios of
+**0.78x, 0.80x and 0.82x** — so 18% to 22% slower, consistently in the same
+direction, with the point estimate not stable to better than a few percent. The
+tails are noisier still: the p99 ratio ranged 0.66x to 0.78x across the same
+three runs. A single run of this benchmark should not be quoted to two
+significant figures, and the honest claim is the ordering plus a range.
 
-Two independent runs, a day apart, gave median ratios of 0.78x and 0.80x. The
-absolute figures move by a millisecond or two between runs, as timings on a
-shared laptop do; the ordering and its rough magnitude are stable.
+The two paths are timed *interleaved* rather than one after the other. Running
+one to completion before the other confounds the execution path with CPU thermal
+state and background load; a sequential run produced a comparable median ratio
+but much dirtier tails (PyTorch p99 109 ms against 76 ms interleaved).
+
+This is a passively cooled laptop shared with other work, which is the honest
+explanation for the spread — and a reason the absolute figures matter less than
+the direction.
 
 This is a single machine at a single thread count. See
 [`LIMITATIONS.md`](LIMITATIONS.md) — the relative ordering can invert elsewhere.
@@ -220,7 +227,7 @@ is not the method; it is which comparison the evaluation makes.
 **Deployment-format conversion has costs invisible to model-level evaluation.**
 Conversion fidelity is effectively exact — zero detection-count disagreements,
 maximum score deviation 1.9e-06 — so a purely numerical check would report the
-converted model as equivalent and stop there. It is nonetheless 20% slower at
+converted model as equivalent and stop there. It is nonetheless 18–22% slower at
 the median with materially worse tail latency, which is the property that
 determines whether a perception pipeline holds its frame budget. Equivalence and
 operational viability are different questions, and only one of them is answered
