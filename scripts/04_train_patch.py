@@ -28,6 +28,7 @@ from torch.utils.data import DataLoader
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
+from adahuman.attack.early_stop import PlateauStopper  # noqa: E402
 from adahuman.attack.patch import (  # noqa: E402
     AdversarialPatch,
     EOTParams,
@@ -49,7 +50,14 @@ ARTIFACTS = ROOT / "artifacts"
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=pathlib.Path, default=DEFAULT_PROTOCOL)
-    parser.add_argument("--epochs", type=int, default=30)
+    parser.add_argument("--epochs", type=int, default=None,
+                        help="max epochs; defaults to attack.max_epochs")
+    parser.add_argument("--patience", type=int, default=None,
+                        help="epochs without improvement before stopping")
+    parser.add_argument("--min-delta", type=float, default=None,
+                        help="improvement required in the smoothed metric")
+    parser.add_argument("--no-early-stop", action="store_true",
+                        help="run to the epoch cap regardless of plateau")
     parser.add_argument("--probe-timing", action="store_true",
                         help="run 5 steps, report throughput, write nothing")
     parser.add_argument("--write-steps", action="store_true",
@@ -101,9 +109,31 @@ def main() -> int:
     category_id = protocol.get("task.category_id")
 
     generator = torch.Generator(device="cpu").manual_seed(seed)
-    epochs = 1 if args.probe_timing else args.epochs
+    max_epochs = args.epochs or protocol.get("attack.max_epochs")
+    epochs = 1 if args.probe_timing else max_epochs
     max_steps = 5 if args.probe_timing else None
 
+    stopper = PlateauStopper(
+        patience=args.patience or protocol.get("attack.early_stopping.patience"),
+        min_delta=(
+            args.min_delta
+            if args.min_delta is not None
+            else protocol.get("attack.early_stopping.min_delta")
+        ),
+        window=protocol.get("attack.early_stopping.smooth_window"),
+    )
+    if not args.probe_timing:
+        print(
+            f"early stopping: patience {stopper.patience}, "
+            f"min_delta {stopper.min_delta}, window {stopper.window}, "
+            f"cap {max_epochs} epochs"
+            + ("  (DISABLED)" if args.no_early_stop else "")
+        )
+
+    # The best patch is checkpointed as it is found. Saving whatever the loop
+    # exits with discards a better patch the run already reached: in the first
+    # training run the final epoch scored 0.7137 while epoch 27 reached 0.7000.
+    best = None
     history = []
     step = 0
     started = time.time()
@@ -153,19 +183,40 @@ def main() -> int:
                 break
 
         if batches:
+            mean_score = epoch_score / batches
+            decision = stopper.update(mean_score)
+
+            if decision.is_best:
+                best = {
+                    "pixels": patch.pixels.detach().cpu().clone(),
+                    "logits": patch.logits.detach().cpu().clone(),
+                    "epoch": epoch,
+                    "steps": step,
+                    "mean_max_person_score": mean_score,
+                    "smoothed": decision.smoothed,
+                }
+
             history.append(
                 {
                     "epoch": epoch,
                     "loss": epoch_loss / batches,
-                    "mean_max_person_score": epoch_score / batches,
+                    "mean_max_person_score": mean_score,
+                    "smoothed": decision.smoothed,
                     "patches_applied": epoch_applied,
+                    "is_best": decision.is_best,
                 }
             )
             print(
                 f"  epoch {epoch:3d}  loss {epoch_loss / batches:.4f}  "
-                f"max-person {epoch_score / batches:.4f}  "
+                f"max-person {mean_score:.4f}  "
+                f"smoothed {decision.smoothed:.4f}  "
                 f"patches {epoch_applied}"
+                + ("  <- best" if decision.is_best else "")
             )
+
+            if decision.should_stop and not args.no_early_stop:
+                print(f"\nstopping early: {decision.reason}")
+                break
         if max_steps and step >= max_steps:
             break
 
@@ -186,16 +237,41 @@ def main() -> int:
         print(f"run log: {log.write()}")
         return 0
 
+    if best is None:
+        raise SystemExit(
+            "no epoch completed with an eligible batch; nothing to save."
+        )
+
+    summary = stopper.summary()
+    print(
+        f"\nbest epoch {best['epoch']} of {summary['epochs_run']} run"
+        f"  (max-person {best['mean_max_person_score']:.4f}, "
+        f"smoothed {best['smoothed']:.4f})"
+    )
+    if not summary["stopped_early"] and not args.no_early_stop:
+        # Reaching the cap means the curve had not flattened. Saying so matters:
+        # the resulting patch is under-trained in exactly the way the first run
+        # was, and that should be visible rather than inferred from the history.
+        note = (
+            f"reached the {max_epochs}-epoch cap without plateauing; "
+            f"the patch is likely under-trained"
+        )
+        print(f"NOTE: {note}")
+        log.note(note)
+
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     patch_path = ARTIFACTS / "patch_v1.pt"
     torch.save(
         {
-            "pixels": patch.pixels.detach().cpu(),
-            "logits": patch.logits.detach().cpu(),
+            "pixels": best["pixels"],
+            "logits": best["logits"],
             "protocol_version": protocol.get("protocol_version"),
             "seed": seed,
-            "steps": step,
-            "epochs": epochs,
+            "steps": best["steps"],
+            "epoch": best["epoch"],
+            "epochs_run": summary["epochs_run"],
+            "mean_max_person_score": best["mean_max_person_score"],
+            "stopped_early": summary["stopped_early"],
         },
         patch_path,
     )
@@ -203,11 +279,22 @@ def main() -> int:
     from torchvision.utils import save_image
 
     preview_path = ARTIFACTS / "patch_v1.png"
-    save_image(patch.pixels.detach().cpu(), preview_path)
+    save_image(best["pixels"], preview_path)
 
     history_path = ARTIFACTS / "patch_v1_training.json"
     with history_path.open("w") as handle:
-        json.dump({"history": history, "steps": step, "seconds": elapsed}, handle, indent=2)
+        json.dump(
+            {
+                "history": history,
+                "steps": step,
+                "seconds": elapsed,
+                "early_stopping": summary,
+                "saved_epoch": best["epoch"],
+                "saved_steps": best["steps"],
+            },
+            handle,
+            indent=2,
+        )
         handle.write("\n")
 
     for key, path in (
@@ -216,11 +303,17 @@ def main() -> int:
         ("history", history_path),
     ):
         log.output(key, path)
-    log.set("training", {"steps": step, "epochs": epochs, "steps_per_sec": rate})
+    log.set("training", {
+        "steps_run": step,
+        "steps_to_best": best["steps"],
+        "epoch_cap": max_epochs,
+        "steps_per_sec": rate,
+        "early_stopping": summary,
+    })
 
     if args.write_steps:
-        _write_steps(args.protocol, step)
-        print(f"froze attack.steps = {step}")
+        _write_steps(args.protocol, best["steps"])
+        print(f"froze attack.steps = {best['steps']} (steps to the saved patch)")
 
     print(f"patch:   {patch_path}")
     print(f"run log: {log.write()}")

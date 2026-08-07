@@ -1,0 +1,63 @@
+{
+  "duration_seconds": 152.383,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T04:16:41.628246+00:00",
+  "git_commit": "30f0a15d740cf00334ee295fe94901b4069f1380",
+  "git_dirty": true,
+  "inputs": {},
+  "notes": [
+    "trained on CPU; expect substantially fewer steps than on GPU",
+    "reached the 3-epoch cap without plateauing; the patch is likely under-trained",
+    "SMOKE TEST: 3-epoch CPU run exercising the early-stopping code. Its outputs were discarded and the Colab patch restored. Not a result."
+  ],
+  "outputs": {
+    "history": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/patch_v1_training.json",
+      "sha256": "881cffe15d608a69114d376d4ed0c48d2487eaade46e5944f0e07d785d9166ef"
+    },
+    "patch": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/patch_v1.pt",
+      "sha256": "f0fab8a7700a70116607082edefb692be4d15503b121fcf29b95b038abd76d73"
+    },
+    "preview": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/patch_v1.png",
+      "sha256": "507566f87f8d3d5b6212873a024d662d80997f69b462613dfc57ca246e664422"
+    }
+  },
+  "pools_read": [
+    "attack_dev"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "819e97bf961e90da78b6efba523bf8b594136915eaa308b3a867051ea3314c12"
+  },
+  "stage": "train_patch",
+  "started_at_utc": "2026-08-07T04:14:09.245248+00:00",
+  "training": {
+    "early_stopping": {
+      "best_epoch": 2,
+      "best_smoothed": 0.8070511205776318,
+      "epochs_run": 3,
+      "epochs_without_improvement": 0,
+      "min_delta": 0.003,
+      "patience": 1,
+      "stopped_early": false,
+      "window": 5
+    },
+    "epoch_cap": 3,
+    "steps_per_sec": 0.7479096032525874,
+    "steps_run": 111,
+    "steps_to_best": 111
+  }
+}

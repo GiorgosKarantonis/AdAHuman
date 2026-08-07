@@ -94,8 +94,22 @@ attack:
   init: random_uniform
   optimizer: adam
   learning_rate: 0.03
-  steps: 1110               # set after a timing probe on Colab
+  steps: 1110               # steps that produced the saved patch; set by --write-steps
   batch_size: 8
+  # Training length is decided by the attack_dev curve rather than fixed in
+  # advance. Added 2026-08-07, before any held-out measurement of the resulting
+  # patch: the first run stopped at 30 epochs with the objective still
+  # descending, and also saved its final patch rather than its best one.
+  #
+  # min_delta sits above the noise floor of the smoothed metric. Epoch-to-epoch
+  # variation from EOT sampling was about +/-0.005 in the observed run, which a
+  # 5-epoch trailing mean reduces to roughly 0.002; genuine late improvement was
+  # around 0.0035 per epoch, comfortably above the threshold.
+  max_epochs: 300           # cap, not a target; the run normally plateaus first
+  early_stopping:
+    patience: 30            # epochs without improvement before stopping
+    min_delta: 0.003        # improvement required in the smoothed metric
+    smooth_window: 5        # trailing epochs averaged before comparison
   # Total-variation weight. Penalizes high-frequency noise in the patch, after
   # Thys et al.; a patch of pure per-pixel noise is not physically realizable
   # and would overstate what a printable attack achieves.
