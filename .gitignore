@@ -6,8 +6,13 @@ __pycache__/
 
 # Datasets and downloaded weights are not redistributed; they are fetched by
 # scripts/00_fetch_coco.sh and by torchvision, and identified by hash in configs/.
-data/
-weights/
+#
+# Root-anchored. An unanchored `data/` matches a directory of that name at any
+# depth, which silently excluded the entire adahuman/data package -- the repo
+# still ran locally, where the files sit on disk, but a fresh clone could not
+# import it. Keep the leading slash.
+/data/
+/weights/
 
 # Large regenerable binaries. Their sha256 is recorded in results/ instead.
 *.onnx
