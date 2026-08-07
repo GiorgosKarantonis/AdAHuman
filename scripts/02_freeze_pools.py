@@ -18,6 +18,7 @@ import argparse
 import datetime as _dt
 import json
 import pathlib
+import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
@@ -105,7 +106,17 @@ def main() -> int:
             log.output(f"manifest_{name}", path)
         today = _dt.date.today().isoformat()
         _stamp_frozen_on(args.protocol, today)
-        print(f"\nwrote {len(ALL_POOLS)} manifests; frozen_on = {today}")
+        # Report the value the protocol actually carries. _stamp_frozen_on is a
+        # no-op once the field is set, so printing `today` unconditionally would
+        # claim a re-stamp that did not happen -- on a re-run it would assert the
+        # pools were frozen today when they were frozen days earlier.
+        stamped = re.search(
+            r"^frozen_on: (\S+)", args.protocol.read_text(), re.M
+        )
+        print(
+            f"\nwrote {len(ALL_POOLS)} manifests; "
+            f"frozen_on = {stamped.group(1) if stamped else 'unknown'}"
+        )
     else:
         print("\n(dry run; pass --write to persist)")
 

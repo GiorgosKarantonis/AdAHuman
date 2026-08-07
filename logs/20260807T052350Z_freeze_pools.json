@@ -1,0 +1,83 @@
+{
+  "duration_seconds": 3.737,
+  "eligible": {
+    "negative": 2307,
+    "person_bearing": 1994
+  },
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T05:23:53.959581+00:00",
+  "git_commit": "aa12c51273401e7c4a7de78fb3570be7e668a613",
+  "git_dirty": true,
+  "git_dirty_paths": [
+    " M scripts/02_freeze_pools.py"
+  ],
+  "inputs": {
+    "annotations": {
+      "path": "data/coco/annotations/instances_val2017.json",
+      "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+    }
+  },
+  "notes": [],
+  "outputs": {
+    "manifest_attack_dev": {
+      "path": "configs/manifests/attack_dev.json",
+      "sha256": "96a48e2b68881847b594acfdefc09c16a09d724a49426f706f306f5fcae7f533"
+    },
+    "manifest_eval_untouched": {
+      "path": "configs/manifests/eval_untouched.json",
+      "sha256": "f836285c3c33d1eea66dc5b74ffbcd32f0c2c64ff8822f23f1b4d6beb3fad792"
+    },
+    "manifest_negative": {
+      "path": "configs/manifests/negative.json",
+      "sha256": "dbf25b40b604474484d4181e38893c02c1021e3af59e6b70d5c72de89b34c966"
+    },
+    "manifest_reference": {
+      "path": "configs/manifests/reference.json",
+      "sha256": "d32643b9ddc5e90a1553a5f4b8d616ef0a32c776f7e41116b3818de51c7458af"
+    }
+  },
+  "pools": {
+    "attack_dev": {
+      "first_id": 6471,
+      "last_id": 580294,
+      "sha256": "34922d023f02dcb60db8693ef3788c09f57baa6cf3b01d8a37eaff54abc426b0",
+      "size": 300
+    },
+    "eval_untouched": {
+      "first_id": 1000,
+      "last_id": 581206,
+      "sha256": "e99c5f68a1da8bf06b7496922a30eab32b901cc44fd7d6ab531fceabcbd9ec77",
+      "size": 500
+    },
+    "negative": {
+      "first_id": 1675,
+      "last_id": 580410,
+      "sha256": "52f6d9362ba5b11baf465d869abb2540d80b82a039b483b0e78064d7a50754d8",
+      "size": 250
+    },
+    "reference": {
+      "first_id": 1353,
+      "last_id": 581317,
+      "sha256": "fec2c62d1daee32150f6b70977ef69da2e758a3e3c6b59c0fecfa896197aef83",
+      "size": 500
+    }
+  },
+  "pools_read": [],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "freeze_pools",
+  "started_at_utc": "2026-08-07T05:23:50.222120+00:00"
+}

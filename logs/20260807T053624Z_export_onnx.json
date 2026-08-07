@@ -1,4 +1,17 @@
 {
+  "duration_seconds": 28.933,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
   "export_warnings": [
     "TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!",
     "TracerWarning: Iterating over a tensor might cause the trace to be incorrect. Passing a tensor of different shape won't change the number of iterations executed (and might lead to errors or silently give incorrect results).",
@@ -17,29 +30,31 @@
     "n_label_mismatches": 0,
     "score_threshold": 0.5
   },
-  "onnx": {
-    "batch_size": 1,
-    "includes_nms": true,
-    "input_size": [
-      320,
-      320
-    ],
-    "opset": 17,
-    "path": "artifacts/detector_v1.onnx",
-    "sha256": "0cf0ae4524ab5575214e0ce0c281708de2e98b8e2c0ef8496dd2275c23d679cb"
-  },
-  "sizes": {
+  "finished_at_utc": "2026-08-07T05:36:53.119473+00:00",
+  "git_commit": "aa12c51273401e7c4a7de78fb3570be7e668a613",
+  "git_dirty": true,
+  "git_dirty_paths": [
+    " M scripts/02_freeze_pools.py"
+  ],
+  "inputs": {},
+  "notes": [],
+  "outputs": {
     "onnx": {
-      "bytes": 14117600,
-      "mb": 13.463592529296875,
-      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx"
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/detector_v1.onnx",
+      "sha256": "0cf0ae4524ab5575214e0ce0c281708de2e98b8e2c0ef8496dd2275c23d679cb"
     },
-    "pytorch": {
-      "buffer_bytes": 132336,
-      "n_parameters": 3440060,
-      "parameter_bytes": 13760240,
-      "total_bytes": 13892576,
-      "total_mb": 13.248992919921875
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq4_export.json",
+      "sha256": "cec5b55c07f72a9e2cdbc0bb24c73d67feeb0b2c40b7c87573f368b3bc9968fe"
     }
-  }
+  },
+  "pools_read": [
+    "reference"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "export_onnx",
+  "started_at_utc": "2026-08-07T05:36:24.186063+00:00"
 }

@@ -162,9 +162,14 @@ adaptive attacker would only make this worse.
 
 **RQ4, conversion fidelity, latency, memory.** Fidelity is effectively exact:
 zero detection-count disagreements across 50 images, maximum box deviation
-7.6e-05 px, maximum score deviation 1.9e-06. ONNX Runtime is *slower* than
-PyTorch here — 0.78x at the median with wider tails — on one machine at one
+9.2e-05 px, maximum score deviation 1.9e-06. ONNX Runtime is *slower* than
+PyTorch here — 0.80x at the median with wider tails — on one machine at one
 thread count, as detailed above.
+
+The ONNX export is not bit-reproducible: constant folding and node ordering vary
+between runs, so fidelity deviations shift slightly (7.6e-05 px in an earlier
+export, 9.2e-05 in the recorded one). Both are far below any operationally
+meaningful difference, and the detection-count agreement was exact in both.
 
 ## Provenance
 

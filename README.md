@@ -163,7 +163,7 @@ and the attacker is non-adaptive.
 The full detector, including non-maximum suppression, exports to ONNX opset 17
 at 320x320, batch size 1. Conversion fidelity is effectively exact: across 50
 reference images, **zero** disagreements in person-detection count at the 0.5
-operating threshold, maximum box deviation 7.6e-05 px, maximum score deviation
+operating threshold, maximum box deviation 9.2e-05 px, maximum score deviation
 1.9e-06.
 
 Latency on an Intel i5-8257U at 4 threads, PyTorch and onnxruntime interleaved
@@ -171,23 +171,26 @@ over 200 iterations each:
 
 | | PyTorch | onnxruntime | ratio |
 |---|---|---|---|
-| median | 67.7 ms | 86.3 ms | 0.78x |
-| p95 | 74.7 ms | 107.7 ms | 0.69x |
-| p99 | 77.9 ms | 110.3 ms | 0.71x |
-| min | 56.1 ms | 37.5 ms | 1.50x |
-| throughput | 14.8 fps | 11.6 fps | 0.78x |
-| load memory | 19.3 MiB | 29.2 MiB | |
+| median | 69.3 ms | 86.8 ms | 0.80x |
+| p95 | 75.1 ms | 108.4 ms | 0.69x |
+| p99 | 76.2 ms | 114.6 ms | 0.66x |
+| min | 57.5 ms | 37.7 ms | 1.53x |
+| throughput | 14.4 fps | 11.5 fps | 0.80x |
+| load memory | 19.2 MiB | 31.3 MiB | |
 | model size | 13.25 MB | 13.46 MB | |
 
-**ONNX Runtime is slower here, not faster** — about 22% at the median, with a
+**ONNX Runtime is slower here, not faster** — about 20% at the median, with a
 noticeably wider spread. That runs against the common assumption that exporting
 to ONNX buys throughput. It is reported as measured.
 
-The two paths were timed *interleaved* rather than one after the other. A first
-sequential run gave the same 0.78x median ratio but much dirtier tails
-(PyTorch p99 109 ms versus 78 ms interleaved), because running one path to
-completion before the other confounds the execution path with CPU thermal state
-and background load.
+The two paths were timed *interleaved* rather than one after the other. Running
+one path to completion before the other confounds the execution path with CPU
+thermal state and background load; a sequential run produced the same median
+ratio but much dirtier tails (PyTorch p99 109 ms against 76 ms interleaved).
+
+Two independent runs, a day apart, gave median ratios of 0.78x and 0.80x. The
+absolute figures move by a millisecond or two between runs, as timings on a
+shared laptop do; the ordering and its rough magnitude are stable.
 
 This is a single machine at a single thread count. See
 [`LIMITATIONS.md`](LIMITATIONS.md) — the relative ordering can invert elsewhere.
@@ -217,7 +220,7 @@ is not the method; it is which comparison the evaluation makes.
 **Deployment-format conversion has costs invisible to model-level evaluation.**
 Conversion fidelity is effectively exact — zero detection-count disagreements,
 maximum score deviation 1.9e-06 — so a purely numerical check would report the
-converted model as equivalent and stop there. It is nonetheless 22% slower at
+converted model as equivalent and stop there. It is nonetheless 20% slower at
 the median with materially worse tail latency, which is the property that
 determines whether a perception pipeline holds its frame budget. Equivalence and
 operational viability are different questions, and only one of them is answered

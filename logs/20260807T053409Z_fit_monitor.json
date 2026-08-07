@@ -1,0 +1,68 @@
+{
+  "duration_seconds": 67.143,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T05:35:16.793387+00:00",
+  "git_commit": "aa12c51273401e7c4a7de78fb3570be7e668a613",
+  "git_dirty": true,
+  "git_dirty_paths": [
+    " M scripts/02_freeze_pools.py"
+  ],
+  "inputs": {},
+  "monitor": {
+    "fpr_on_calibration_split": 0.05333333333333334,
+    "fpr_on_fit_split": 0.02857142857142857,
+    "monitor": {
+      "explained_variance_ratio": 0.9695327579589665,
+      "feature_dim": 480,
+      "n_components": 64,
+      "n_fit": 350,
+      "shrinkage": 0.0637177312551352,
+      "threshold": 103.65195055830534
+    },
+    "n_calibration_split": 150,
+    "n_fit_split": 350,
+    "reference_score_quantiles": {
+      "0.5": 51.426497243096605,
+      "0.9": 87.89335015886425,
+      "0.95": 92.30488999362794,
+      "0.99": 115.59699154257191,
+      "1.0": 131.07177307368792
+    },
+    "target_fpr": 0.05
+  },
+  "notes": [],
+  "outputs": {
+    "monitor": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/monitor_v1.npz",
+      "sha256": "e177fbc4a84d3d2c4e2a5692d52820854871d2fd94abc2788cce4c6145ad569b"
+    },
+    "reference_features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_reference_clean.npz",
+      "sha256": "f46d71ac28c6b61b03ae86e34a80c4d7c6aa5a6a83d88851d0ab9afcb6c017c8"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq3_monitor_fit.json",
+      "sha256": "d5bc8cb1756ca607a160376a97a6d00f3ad0472652358423433d22849b352419"
+    }
+  },
+  "pools_read": [
+    "reference"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "fit_monitor",
+  "started_at_utc": "2026-08-07T05:34:09.650825+00:00"
+}
