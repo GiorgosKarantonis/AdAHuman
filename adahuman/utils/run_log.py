@@ -41,15 +41,35 @@ def _git_commit() -> str | None:
     return out.stdout.strip() or None
 
 
-def _git_dirty() -> bool | None:
-    """Whether the working tree has uncommitted changes.
+#: Paths whose state determines what the code does. Everything else in the
+#: working tree is output: logs/, results/ and artifacts/ are written by the
+#: stages themselves, and a stage that inspected the whole tree would report
+#: itself dirty because an earlier stage had left a log behind.
+SOURCE_PATHS = (
+    "adahuman",
+    "scripts",
+    "configs",
+    "notebooks",
+    "requirements.txt",
+    "requirements.lock",
+)
 
-    A result produced from a dirty tree is not reproducible from the commit
-    alone, so the fact is recorded rather than hidden.
+
+def _git_status_source() -> list[str] | None:
+    """Porcelain status lines for source paths only.
+
+    Scoped deliberately. The question this answers is whether the code that
+    produced a result differs from the commit recorded alongside it, so it
+    covers source, configuration and the frozen protocol, and ignores the
+    directories stages write into. An unscoped check reports dirty as soon as
+    any stage has run, which makes the flag carry no information.
+
+    Untracked files inside these paths do count: an uncommitted module changes
+    behaviour just as an edited one does.
     """
     try:
         out = subprocess.run(
-            ["git", "status", "--porcelain"],
+            ["git", "status", "--porcelain", "--", *SOURCE_PATHS],
             capture_output=True,
             text=True,
             check=True,
@@ -57,7 +77,17 @@ def _git_dirty() -> bool | None:
         )
     except (subprocess.CalledProcessError, FileNotFoundError):
         return None
-    return bool(out.stdout.strip())
+    return [line for line in out.stdout.splitlines() if line.strip()]
+
+
+def _git_dirty() -> bool | None:
+    """Whether the source differs from the recorded commit.
+
+    A result produced from modified source is not reproducible from the commit
+    alone, so the fact is recorded rather than hidden.
+    """
+    lines = _git_status_source()
+    return None if lines is None else bool(lines)
 
 
 def environment() -> dict[str, Any]:
@@ -103,6 +133,9 @@ class RunLog:
             "started_at_utc": self.started_at.isoformat(),
             "git_commit": _git_commit(),
             "git_dirty": _git_dirty(),
+            # The offending entries, so a dirty run says which files diverged
+            # instead of leaving it to be reconstructed afterwards.
+            "git_dirty_paths": _git_status_source() or [],
             "protocol": {
                 "path": str(protocol_path),
                 "sha256": sha256_file(protocol_path),

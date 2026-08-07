@@ -94,7 +94,9 @@ attack:
   init: random_uniform
   optimizer: adam
   learning_rate: 0.03
-  steps: 1110               # steps that produced the saved patch; set by --write-steps
+  # Steps to the saved patch, set by --write-steps. Was 1110 from a 30-epoch
+  # run superseded on 2026-08-07 by a 109-epoch run that stopped on plateau.
+  steps: 3848
   batch_size: 8
   # Training length is decided by the attack_dev curve rather than fixed in
   # advance. Added 2026-08-07, before any held-out measurement of the resulting

@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import json
 import pathlib
+import re
 import sys
 import time
 
@@ -321,11 +322,27 @@ def main() -> int:
 
 
 def _write_steps(path: pathlib.Path, steps: int) -> None:
+    """Record the step count that produced the saved patch.
+
+    Overwrites a previously recorded value rather than preserving it. The field
+    describes the patch that exists, so a stale number is worse than none: after
+    a retrain it would attribute the new patch to the old run's step count. An
+    earlier version refused to touch any non-PENDING value and left exactly that
+    inconsistency behind -- 1110 steps recorded against a 3848-step patch.
+    """
     text = path.read_text()
-    if "steps: PENDING" not in text:
-        print("attack.steps already frozen; leaving it alone")
+    match = re.search(r"^  steps: (\S+)", text, re.M)
+    if match is None:
+        raise RuntimeError("attack.steps not found in the protocol")
+
+    current = match.group(1)
+    if current == str(steps):
         return
-    path.write_text(text.replace("steps: PENDING", f"steps: {steps}", 1))
+    if current != "PENDING":
+        print(f"attack.steps: {current} -> {steps} (superseded by this run)")
+
+    start, end = match.span(1)
+    path.write_text(text[:start] + str(steps) + text[end:])
 
 
 if __name__ == "__main__":
