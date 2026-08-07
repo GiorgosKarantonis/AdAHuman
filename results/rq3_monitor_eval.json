@@ -1,0 +1,130 @@
+{
+  "clean_vs_adversarial": {
+    "auroc": 0.6388320000000001,
+    "average_precision": 0.6120062995246053,
+    "equal_error_rate": 0.392,
+    "fpr_at_threshold": 0.052,
+    "n_negative": 500,
+    "n_positive": 500,
+    "negative_median": 52.29956179211712,
+    "positive_median": 67.43077166986853,
+    "threshold": 103.65195055830534,
+    "tpr_at_fpr_1pct": 0.016,
+    "tpr_at_fpr_5pct": 0.106,
+    "tpr_at_threshold": 0.108
+  },
+  "clean_vs_ordinary_shift": {
+    "auroc": 0.5622159999999999,
+    "average_precision": 0.5432099857767165,
+    "equal_error_rate": 0.444,
+    "fpr_at_threshold": 0.052,
+    "n_negative": 500,
+    "n_positive": 500,
+    "negative_median": 52.29956179211712,
+    "positive_median": 58.1762896569645,
+    "threshold": 103.65195055830534,
+    "tpr_at_fpr_1pct": 0.01,
+    "tpr_at_fpr_5pct": 0.072,
+    "tpr_at_threshold": 0.074
+  },
+  "monitor": {
+    "explained_variance_ratio": 0.9695327579589665,
+    "feature_dim": 480,
+    "n_components": 64,
+    "n_fit": 350,
+    "shrinkage": 0.0637177312551352,
+    "threshold": 103.65195055830534
+  },
+  "ordinary_shift_vs_adversarial": {
+    "auroc": 0.5862719999999999,
+    "average_precision": 0.5692309287323367,
+    "equal_error_rate": 0.422,
+    "fpr_at_threshold": 0.074,
+    "n_negative": 500,
+    "n_positive": 500,
+    "negative_median": 58.1762896569645,
+    "positive_median": 67.43077166986853,
+    "threshold": 103.65195055830534,
+    "tpr_at_fpr_1pct": 0.022,
+    "tpr_at_fpr_5pct": 0.08,
+    "tpr_at_threshold": 0.108
+  },
+  "per_corruption_vs_adversarial": {
+    "brightness": {
+      "auroc": 0.60134,
+      "average_precision": 0.8741336867463878,
+      "equal_error_rate": 0.43,
+      "fpr_at_threshold": 0.05,
+      "n_negative": 100,
+      "n_positive": 500,
+      "negative_median": 58.65540301680057,
+      "positive_median": 67.43077166986853,
+      "threshold": 103.65195055830534,
+      "tpr_at_fpr_1pct": 0.008,
+      "tpr_at_fpr_5pct": 0.126,
+      "tpr_at_threshold": 0.108
+    },
+    "fog": {
+      "auroc": 0.5998399999999999,
+      "average_precision": 0.8742246232253336,
+      "equal_error_rate": 0.41,
+      "fpr_at_threshold": 0.08,
+      "n_negative": 100,
+      "n_positive": 500,
+      "negative_median": 56.65691072169809,
+      "positive_median": 67.43077166986853,
+      "threshold": 103.65195055830534,
+      "tpr_at_fpr_1pct": 0.024,
+      "tpr_at_fpr_5pct": 0.08,
+      "tpr_at_threshold": 0.108
+    },
+    "gaussian_noise": {
+      "auroc": 0.6286999999999999,
+      "average_precision": 0.8873406698556587,
+      "equal_error_rate": 0.4,
+      "fpr_at_threshold": 0.05,
+      "n_negative": 100,
+      "n_positive": 500,
+      "negative_median": 54.03600054108037,
+      "positive_median": 67.43077166986853,
+      "threshold": 103.65195055830534,
+      "tpr_at_fpr_1pct": 0.026,
+      "tpr_at_fpr_5pct": 0.11,
+      "tpr_at_threshold": 0.108
+    },
+    "jpeg_compression": {
+      "auroc": 0.60346,
+      "average_precision": 0.8660457240943364,
+      "equal_error_rate": 0.4,
+      "fpr_at_threshold": 0.08,
+      "n_negative": 100,
+      "n_positive": 500,
+      "negative_median": 55.61587580857389,
+      "positive_median": 67.43077166986853,
+      "threshold": 103.65195055830534,
+      "tpr_at_fpr_1pct": 0.002,
+      "tpr_at_fpr_5pct": 0.094,
+      "tpr_at_threshold": 0.108
+    },
+    "motion_blur": {
+      "auroc": 0.4980200000000001,
+      "average_precision": 0.8414944383806557,
+      "equal_error_rate": 0.45,
+      "fpr_at_threshold": 0.11,
+      "n_negative": 100,
+      "n_positive": 500,
+      "negative_median": 62.595586180525096,
+      "positive_median": 67.43077166986853,
+      "threshold": 103.65195055830534,
+      "tpr_at_fpr_1pct": 0.024,
+      "tpr_at_fpr_5pct": 0.076,
+      "tpr_at_threshold": 0.108
+    }
+  },
+  "score_medians": {
+    "attacked": 67.43077166986853,
+    "clean": 52.29956179211712,
+    "ordinary_shift": 58.1762896569645
+  },
+  "verdict": "NEGATIVE: no useful separation in either framing (clean 0.639, shift 0.586)."
+}

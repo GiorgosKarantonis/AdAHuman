@@ -118,12 +118,53 @@ description costs less than a misleading fix.
 
 ## Result-dependent limitations
 
-To be completed when results exist. Any negative or mixed finding for the RQ3
-monitor is reported here and in the artifact report, not omitted.
+**RQ1, attack effect.** The patch suppresses 41.6% [38.1–45.2] of held-out
+targets the detector found when clean, against 9.9% [8.0–12.3] for a random
+patch of identical size and placement. The intervals are far apart, so most of
+the effect is adversarial rather than occlusion — but the occlusion floor is not
+zero, and any reading of the headline number has to net it out.
 
-- RQ1 (attack effect): _pending_
-- RQ3 (monitor separation): _pending_
-- RQ4 (conversion fidelity, latency, memory): _pending_
+Suppression was 50.5% on the development pool and 41.6% held out. The patch was
+optimized on the development pool, so some of that 9-point gap is ordinary
+overfitting to the images it was trained against. The held-out figure is the one
+that should be quoted.
+
+Recall on *unpatched* targets in the same frames moved −0.005, and false person
+detections on the person-free pool were unchanged at 0.004 per image. The attack
+therefore suppresses what it covers rather than degrading the detector, which is
+the narrower and better-supported claim.
+
+**RQ3, monitor separation: negative.** The feature-distance monitor does not
+work. Distinguishing adversarial from ordinarily-shifted inputs gives AUROC
+0.586, and from clean inputs 0.639 — both close to the 0.5 of a coin flip. At
+the frozen operating threshold it flags 10.8% of attacked inputs while raising
+false alarms on 5.2% of clean ones, which is not a usable trade at any
+deployment scale.
+
+Per-corruption results make the failure sharper. Against motion blur the AUROC
+is 0.498: the monitor cannot separate an adversarial patch from a blurred frame
+at all.
+
+The hypothesis in section 7.4 of the concept paper — that adversarially patched
+inputs sit far enough from the clean feature distribution to be flagged at
+runtime — is not supported for this model, this feature representation, and this
+attack. This is reported as the result. It is consistent with published work
+finding that detecting adversarial examples can be nearly as hard as classifying
+them correctly, and it is a single negative result about one image-level
+diagnostic, not evidence that runtime monitoring is generally unworkable.
+
+Two constraints bound how far it generalizes. The monitor is image-level,
+pooling the whole backbone feature map, so a patch covering a quarter of one
+bounding box is a small perturbation of the pooled vector; per-proposal or
+region-level monitoring is untested and might behave differently. And the
+attacker here is non-adaptive — it never optimized against the monitor. An
+adaptive attacker would only make this worse.
+
+**RQ4, conversion fidelity, latency, memory.** Fidelity is effectively exact:
+zero detection-count disagreements across 50 images, maximum box deviation
+7.6e-05 px, maximum score deviation 1.9e-06. ONNX Runtime is *slower* than
+PyTorch here — 0.78x at the median with wider tails — on one machine at one
+thread count, as detailed above.
 
 ## Provenance
 

@@ -1,0 +1,145 @@
+{
+  "eval_untouched": {
+    "attacked": {
+      "coco_map": {
+        "AP@.50": 0.43210865162639395,
+        "AP@.75": 0.20398292088714567,
+        "AP@[.50:.95]": 0.2219287907625724,
+        "AP_large": 0.3361084232816097,
+        "AP_medium": 0.24950699581518623,
+        "AP_small": 0.019435960146890006,
+        "AR@1": 0.1410569105691057,
+        "AR@10": 0.3072590011614402,
+        "AR@100": 0.3764808362369338,
+        "AR_large": 0.5421965317919075,
+        "AR_medium": 0.3792993630573248,
+        "AR_small": 0.08880597014925372
+      },
+      "grouped_recall": {
+        "patched": {
+          "detected": 437,
+          "n_targets": 917,
+          "recall": 0.4765539803707743,
+          "recall_ci95": [
+            0.4443928821271636,
+            0.5089106973456053
+          ]
+        },
+        "unpatched": {
+          "detected": 74,
+          "n_targets": 805,
+          "recall": 0.09192546583850932,
+          "recall_ci95": [
+            0.07385835635097979,
+            0.11386874043023834
+          ]
+        }
+      },
+      "operating_point": {
+        "false_negatives": 1211,
+        "false_positives": 218,
+        "false_positives_per_image": 0.436,
+        "missed_detection_rate": 0.7032520325203252,
+        "n_detections": 729,
+        "n_ground_truth": 1722,
+        "n_images": 500,
+        "precision": 0.700960219478738,
+        "recall": 0.2967479674796748,
+        "true_positives": 511
+      }
+    },
+    "clean": {
+      "coco_map": {
+        "AP@.50": 0.6479816051443993,
+        "AP@.75": 0.4003837664955417,
+        "AP@[.50:.95]": 0.3857151414784865,
+        "AP_large": 0.6381958841260919,
+        "AP_medium": 0.33875519239301327,
+        "AP_small": 0.02095573695909741,
+        "AR@1": 0.21219512195121953,
+        "AR@10": 0.42543554006968637,
+        "AR@100": 0.47973286875725896,
+        "AR_large": 0.7354046242774566,
+        "AR_medium": 0.442515923566879,
+        "AR_small": 0.0990049751243781
+      },
+      "grouped_recall": {
+        "patched": {
+          "detected": 735,
+          "n_targets": 917,
+          "recall": 0.8015267175572519,
+          "recall_ci95": [
+            0.7744769758725341,
+            0.8260607113730181
+          ]
+        },
+        "unpatched": {
+          "detected": 78,
+          "n_targets": 805,
+          "recall": 0.0968944099378882,
+          "recall_ci95": [
+            0.07833305447928329,
+            0.11928473214325941
+          ]
+        }
+      },
+      "operating_point": {
+        "false_negatives": 909,
+        "false_positives": 59,
+        "false_positives_per_image": 0.118,
+        "missed_detection_rate": 0.5278745644599303,
+        "n_detections": 872,
+        "n_ground_truth": 1722,
+        "n_images": 500,
+        "precision": 0.9323394495412844,
+        "recall": 0.4721254355400697,
+        "true_positives": 813
+      }
+    },
+    "n_images": 500,
+    "n_patched_targets": 917,
+    "suppression": {
+      "ci95": [
+        0.3812142422207007,
+        0.4523089060385656
+      ],
+      "detected_when_clean": 735,
+      "rate": 0.4163265306122449,
+      "revealed_only_under_attack": 8,
+      "suppressed": 306
+    }
+  },
+  "negative": {
+    "attacked": {
+      "operating_point": {
+        "false_negatives": 0,
+        "false_positives": 1,
+        "false_positives_per_image": 0.004,
+        "missed_detection_rate": NaN,
+        "n_detections": 1,
+        "n_ground_truth": 0,
+        "n_images": 250,
+        "precision": 0.0,
+        "recall": NaN,
+        "true_positives": 0
+      }
+    },
+    "clean": {
+      "operating_point": {
+        "false_negatives": 0,
+        "false_positives": 1,
+        "false_positives_per_image": 0.004,
+        "missed_detection_rate": NaN,
+        "n_detections": 1,
+        "n_ground_truth": 0,
+        "n_images": 250,
+        "precision": 0.0,
+        "recall": NaN,
+        "true_positives": 0
+      }
+    },
+    "n_images": 250,
+    "n_patched_targets": 0,
+    "note": "no person targets; clean and attacked conditions are identical"
+  }
+}

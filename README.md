@@ -19,9 +19,9 @@ when the result is negative.
 | Protocol frozen | done — `configs/protocol_v1.yaml`, pools frozen 2026-08-05 |
 | Pools frozen | done — 4 disjoint pools, manifests digested |
 | RQ1a clean baseline | done — `results/rq1_clean_baseline.json` |
-| RQ1b patch attack | patch trained (30 epochs, Colab T4); held-out evaluation not yet run |
+| RQ1b patch attack | done — `results/rq1_attack.json`, `results/rq1_attack_control.json` |
 | RQ3 monitor fit | done — `results/rq3_monitor_fit.json` |
-| RQ3 monitor evaluation | implemented; waiting on the held-out attack run |
+| RQ3 monitor evaluation | done — `results/rq3_monitor_eval.json` (negative result) |
 | RQ4 ONNX export and CPU benchmark | done — `results/rq4_export.json`, `results/rq4_benchmark.json` |
 | RQ5 reproducibility package | in progress |
 
@@ -29,12 +29,8 @@ Stages 05 and 07 have been exercised end-to-end with an untrained patch on a
 24-image subset, so the post-training path is known to run. Those smoke outputs
 were deleted; their run logs remain in `logs/` and are marked as smoke tests.
 
-The trained patch is **not yet converged**. Over 30 epochs the mean maximum
-person score fell from 0.809 to about 0.71 and was still descending, well above
-the 0.5 decision threshold. Whether to train further is a decision to be taken
-on `attack_dev` evidence alone, before the held-out pool is spent — it is spent
-once, and a patch chosen after seeing held-out results would not be an
-out-of-sample measurement.
+The patch converged: training ran 109 epochs of a 300-epoch cap and stopped on
+a plateau, checkpointing epoch 103.
 
 No result is claimed until it appears in `results/` with a dated run log in
 `logs/`. See [`LIMITATIONS.md`](LIMITATIONS.md) for what these measurements do
@@ -59,6 +55,56 @@ figures are the threshold-independent view.
 
 The three person-bearing pools agree to within their confidence intervals,
 which is the intended check that the random split produced exchangeable pools.
+
+## Attack (RQ1)
+
+Held-out pool, 500 images, 917 patched targets. Every image is scored twice —
+clean and patched — so the effect is a paired difference on identical frames.
+
+| | recall on patched targets | suppression rate |
+|---|---|---|
+| clean | 0.802 | — |
+| **trained patch** | 0.477 | **41.6%** [38.1–45.2] |
+| random patch (control) | 0.755 | 9.9% [8.0–12.3] |
+
+AP@.50 falls from 0.648 to 0.432. Suppression rate is the paired quantity: of
+targets the detector found when clean, the fraction lost under attack. It cannot
+be inflated by targets that were being missed anyway.
+
+The random-patch control is what makes the number interpretable. A patch of
+identical size and placement, never optimized, still suppresses 9.9% purely by
+covering the target. The trained patch is roughly 32 points above that floor,
+with non-overlapping intervals.
+
+Two controls support the claim that this is *localized* suppression rather than
+a degraded detector: recall on unpatched targets in the same frames moved
+−0.005, and false person detections on the 250 person-free images were unchanged
+at 0.004 per image.
+
+## Runtime monitor (RQ3) — negative result
+
+The feature-distance monitor does not work, and that is the finding.
+
+| comparison | AUROC |
+|---|---|
+| clean vs adversarial | 0.639 |
+| ordinary shift vs adversarial | 0.586 |
+| clean vs ordinary shift | 0.562 |
+
+At the frozen threshold it flags 10.8% of attacked inputs while false-alarming
+on 5.2% of clean ones. Against motion blur specifically the AUROC is 0.498 —
+indistinguishable from chance.
+
+The second row is the one that matters. A monitor that separates adversarial
+from clean but not from fog, blur, and codec noise is a novelty detector, not an
+attack detector; in deployment it would alarm on weather and be switched off.
+Here it does neither well.
+
+The reported verdict is produced by a function written before the numbers
+existed, so the conclusion follows from thresholds fixed in advance rather than
+from prose composed afterwards. See [`LIMITATIONS.md`](LIMITATIONS.md) for what
+this does and does not generalize to — in particular, the monitor is image-level
+and the attacker is non-adaptive.
 
 ## Deployment comparison (RQ4)
 

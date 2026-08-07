@@ -1,0 +1,43 @@
+{
+  "duration_seconds": 188.855,
+  "environment": {
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "onnxruntime": "1.23.2",
+    "platform": "macOS-15.7.8-x86_64-i386-64bit",
+    "processor": "i386",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.0",
+    "torch": "2.2.2",
+    "torch_cuda_available": false,
+    "torchvision": "0.17.2"
+  },
+  "finished_at_utc": "2026-08-07T05:11:08.701628+00:00",
+  "git_commit": "190d2a35fb899ea1469ed1fbece38e7d56a91cf7",
+  "git_dirty": false,
+  "git_dirty_paths": [],
+  "inputs": {},
+  "notes": [
+    "CONTROL: untrained random patch; measures occlusion, not attack"
+  ],
+  "outputs": {
+    "features": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/artifacts/features_eval_control.npz",
+      "sha256": "a2337a813218e7bb0a6026d104e0e50a3055bc304ca6456dc210472a7f9fc492"
+    },
+    "results": {
+      "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/results/rq1_attack_control.json",
+      "sha256": "215a92ae8ee751b75d0839ccf51fc9c043be924e13f066bc1f5117a4a3aadbb6"
+    }
+  },
+  "pools_read": [
+    "eval_untouched",
+    "negative"
+  ],
+  "protocol": {
+    "path": "/Users/giorgoskarantonis/Documents/GitHub/AdAHuman/configs/protocol_v1.yaml",
+    "sha256": "c68e714fcd81bf1913c5bf844766aa2b8a6a560b8694aa76b658dba2eef506e5"
+  },
+  "stage": "eval_attack",
+  "started_at_utc": "2026-08-07T05:07:59.846193+00:00"
+}
