@@ -140,7 +140,17 @@ def transform_patch(
     resized = (resized - resized.mean()) * contrast + resized.mean()
 
     if eot.noise_std > 0:
-        noise = torch.randn(resized.shape, generator=generator, device=patch.device)
+        # Drawn on CPU, then moved. Two reasons, and the second is the one that
+        # matters: a torch.Generator is bound to a device type, so handing a CPU
+        # generator to a CUDA allocation raises outright; and a CUDA generator is
+        # a different RNG from a CPU one, so generating device-side would make a
+        # GPU training run unreproducible on a CPU-only machine. The patch is
+        # optimized on a Colab GPU while every other stage runs on CPU, so the
+        # transform draws are kept device-independent. The tensor is small and
+        # the transfer is not measurable against the forward pass.
+        noise = torch.randn(resized.shape, generator=generator).to(
+            device=resized.device, dtype=resized.dtype
+        )
         resized = resized + noise * eot.noise_std
 
     return resized.squeeze(0).clamp(0, 1), alpha.squeeze(0).clamp(0, 1)
