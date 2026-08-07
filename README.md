@@ -13,6 +13,20 @@ Nothing here claims to solve adversarial robustness. It measures one attack
 against one model under stated conditions and reports the result, including
 when the result is negative.
 
+## Findings
+
+| | Question | Finding |
+|---|---|---|
+| **RQ1** | Does an optimized patch degrade detection beyond simple occlusion? | **Yes.** 41.6% of held-out targets suppressed, against 9.9% for a random patch of identical size and placement. |
+| RQ2 | Does an established resilience control retain robustness after deployment optimization? | **Deferred.** Not implemented, not run, not claimed. |
+| **RQ3** | Can a feature-distance score flag adversarial inputs at runtime without excessive false alarms? | **No.** AUROC 0.586 against ordinarily-corrupted inputs, 0.498 against motion blur. Not usable as a defence, alone or in combination. |
+| **RQ4** | What do accuracy, latency and memory cost on a deployment path? | **Conversion is exact, execution is not free.** Zero detection-count disagreements; 18–22% slower at the median under onnxruntime. |
+| **RQ5** | Can an independent party reproduce this? | **Yes.** Pool manifests, clean baseline and fitted monitor reproduce byte- or bit-identically from the seed and protocol. |
+
+Each row links to a result file in `results/` with a dated run record in
+`logs/`. The RQ3 verdict is produced by a function written and committed
+before the numbers existed.
+
 ## Status
 
 | Stage | State |
@@ -173,7 +187,7 @@ over 200 iterations each:
 | | PyTorch | onnxruntime | ratio |
 |---|---|---|---|
 | median | 72.0 ms | 87.3 ms | 0.82x |
-| p95 | 78.4 ms | 108.6 ms | 0.72x |
+| p95 | 78.3 ms | 108.6 ms | 0.72x |
 | p99 | 87.1 ms | 111.0 ms | 0.78x |
 | min | 63.4 ms | 39.0 ms | 1.63x |
 | throughput | 13.9 fps | 11.5 fps | 0.82x |
